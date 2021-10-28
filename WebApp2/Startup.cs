@@ -27,7 +27,7 @@ namespace Kunde_SPA
         {
             services.AddControllers();
 
-            services.AddDbContext<BillettContekst>(options =>
+            services.AddDbContext<DBContext>(options =>
                             options.UseSqlite("Data Source=Billett.db"));
             services.AddScoped<IKundeRepository, KundeRepository>();
             services.AddScoped<IBillettRepository, BillettRepository>();
