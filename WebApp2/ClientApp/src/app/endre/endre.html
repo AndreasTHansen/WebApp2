@@ -1,4 +1,4 @@
-﻿<div class="container">
+<div class="container">
     <div class="col-md-4">
         <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
             <input class="form-control" formControlName="id" type="hidden" />
@@ -17,24 +17,17 @@
                 </p>
             </div>
             <div class="form-group">
-                <label>Adresse</label>
-                <input class="form-control" formControlName="adresse" />
-                <p class="alert alert-warning" [hidden]="skjema.controls.adresse.valid || (skjema.controls.adresse.pristine && !submitted)">
-                    Adresse er obligatorisk.
+                <label>Mobilnummer</label>
+                <input class="form-control" formControlName="mobilnummer" />
+                <p class="alert alert-warning" [hidden]="skjema.controls.mobilnummer.valid || (skjema.controls.mobilnummer.pristine && !submitted)">
+                    Mobilnummer er obligatorisk
                 </p>
             </div>
             <div class="form-group">
-                <label>Postnr</label>
-                <input class="form-control" formControlName="postnr" />
-                <p class="alert alert-warning" [hidden]="skjema.controls.postnr.valid || (skjema.controls.postnr.pristine && !submitted)">
-                    Postnr er obligatorisk (4 siffer)
-                </p>
-            </div>
-            <div class="form-group">
-                <label>Poststed</label>
-                <input class="form-control" formControlName="poststed" />
-                <p class="alert alert-warning" [hidden]="skjema.controls.poststed.valid || (skjema.controls.poststed.pristine && !submitted)">
-                    Poststed er obligatorisk.
+                <label>E-post</label>
+                <input class="form-control" formControlName="epost" />
+                <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid || (skjema.controls.epost.pristine && !submitted)">
+                    E-post er obligatorisk
                 </p>
             </div>
             <div class="form-group">
