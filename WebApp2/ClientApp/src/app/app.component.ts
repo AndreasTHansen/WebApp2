@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'Kunde SPA - Routing';
+  title = 'Color Line Admin';
 }
