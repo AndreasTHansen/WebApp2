@@ -31,6 +31,7 @@ namespace Kunde_SPA
                             options.UseSqlite("Data Source=Billett.db"));
             services.AddScoped<IKundeRepository, KundeRepository>();
             services.AddScoped<IBillettRepository, BillettRepository>();
+            services.AddScoped<IReiseRepository, ReiseRepository>();
             
           // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
