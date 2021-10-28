@@ -37,6 +37,18 @@ namespace KundeApp2.Controllers
             }
             return Ok(alleKunder);
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> HentEnKunde(int id)
+        {
+            Kunde hentetKunde = await _billettDb.HentEnKunde(id);
+
+            if (hentetKunde == null)
+            {
+                _log.LogInformation("Fant ikke reisen i databasen");
+                return NotFound();
+            }
+            return Ok(hentetKunde);
+        }
 
         [HttpPut]
         public async Task<ActionResult> EndreKunde(Kunde endreKunde)

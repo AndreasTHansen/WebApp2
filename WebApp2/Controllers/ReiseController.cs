@@ -22,6 +22,7 @@ namespace Kunde_SPA.Controllers
             _billettDb = billettDb;
             _log = log;
         }
+        [HttpGet]
         public async Task<ActionResult> HentAlleReiser()
         {
             //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
@@ -31,7 +32,7 @@ namespace Kunde_SPA.Controllers
             List<Reise> reiseListe = await _billettDb.HentAlleReiser();
             return Ok(reiseListe);
         }
-
+        [HttpGet("{id}")]
         public async Task<ActionResult> HentEnReise(int id)
         {
             Reise hentetReise = await _billettDb.HentEnReise(id);
@@ -43,7 +44,7 @@ namespace Kunde_SPA.Controllers
             }
             return Ok(hentetReise);
         }
-
+        [HttpPost]
         public async Task<ActionResult> LagreReise(Reise innReise)
         {
             bool lagreOk = await _billettDb.LagreReise(innReise);
@@ -55,7 +56,7 @@ namespace Kunde_SPA.Controllers
             return Ok();
         }
 
-        //EndreReise
+        [HttpPut]
         public async Task<ActionResult> EndreReise(Reise endreReise)
         {
             if (ModelState.IsValid)
@@ -71,7 +72,7 @@ namespace Kunde_SPA.Controllers
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest();
         }
-
+        [HttpDelete("{id}")]
         public async Task<ActionResult> SlettReise(int id)
         {
             bool returOK = await _billettDb.SlettReise(id);
