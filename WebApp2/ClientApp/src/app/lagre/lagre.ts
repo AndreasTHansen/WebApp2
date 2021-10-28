@@ -22,7 +22,7 @@ export class Lagre {
       null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])
     ],
     epost: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{4}")])
+      null, Validators.compose([Validators.required, Validators.pattern("")])
     ]
   }
 
