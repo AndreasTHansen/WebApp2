@@ -46,6 +46,31 @@ namespace KundeApp2.DAL
             }
         }
 
+        public async Task<Kunde> HentEnKunde(int id)
+        {
+            try
+            {
+                Kunder enKunde = await _billettDb.Kunder.FindAsync(id);
+                var hentetKunde = new Kunde()
+                {
+                    id = enKunde.id,
+                    fornavn = enKunde.fornavn,
+                    etternavn = enKunde.etternavn,
+                    epost = enKunde.epost,
+                    mobilnummer = enKunde.mobilnummer,
+                    kortnummer = enKunde.kort.kortnummer,
+                    utlopsdato = enKunde.kort.utlopsdato,
+                    cvc = enKunde.kort.cvc
+                };
+
+                return hentetKunde;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public async Task<bool> EndreKunde(Kunde endreKunde)
         {
             try
@@ -118,6 +143,8 @@ namespace KundeApp2.DAL
                     nyKunde.kort = sjekkKort;
                 }
 
+                _billettDb.Add(nyKunde);
+                await _billettDb.SaveChangesAsync();
                 return true;
             }
             catch
