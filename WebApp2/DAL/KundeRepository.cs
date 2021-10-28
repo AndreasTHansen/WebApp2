@@ -10,11 +10,11 @@ namespace KundeApp2.DAL
 {
     public class KundeRepository : IKundeRepository
     {
-        private readonly BillettContekst _billettDb;
+        private readonly DBContext _billettDb;
 
         private ILogger<KundeRepository> _log;
 
-        public KundeRepository(BillettContekst billettDb, ILogger<KundeRepository> log)
+        public KundeRepository(DBContext billettDb, ILogger<KundeRepository> log)
         {
             _billettDb = billettDb;
             _log = log;

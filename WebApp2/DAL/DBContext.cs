@@ -58,9 +58,9 @@ namespace KundeApp2.DAL
         public int cvc { get; set; }
     }
     [ExcludeFromCodeCoverage]
-    public class BillettContekst : DbContext
+    public class DBContext : DbContext
     {
-        public BillettContekst(DbContextOptions<BillettContekst> options)
+        public DBContext(DbContextOptions<DBContext> options)
             : base(options)
         {
             Database.EnsureCreated();

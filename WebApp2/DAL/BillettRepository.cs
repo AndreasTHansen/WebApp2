@@ -14,11 +14,11 @@ namespace Kunde_SPA.DAL
     public class BillettRepository : IBillettRepository
     {
 
-        private readonly BillettContekst _billettDb;
+        private readonly DBContext _billettDb;
 
         private ILogger<BillettRepository> _log;
 
-        public BillettRepository(BillettContekst billettDb, ILogger<BillettRepository> log)
+        public BillettRepository(DBContext billettDb, ILogger<BillettRepository> log)
         {
             _billettDb = billettDb;
             _log = log;

@@ -28,6 +28,7 @@ namespace Kunde_SPA.Controllers
             _log = log;
         }
 
+        [HttpGet]
         public async Task<ActionResult> HentAlle()
         {
 
@@ -55,7 +56,7 @@ namespace Kunde_SPA.Controllers
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest();
         }
-
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Slett(int id)
         {
             bool returOK = await _billettDb.Slett(id);
@@ -66,7 +67,7 @@ namespace Kunde_SPA.Controllers
             }
             return Ok();
         }
-
+        [HttpPut]
         public async Task<ActionResult> EndreBillett(Billett endreBillett)
         {
             if (ModelState.IsValid)
@@ -83,6 +84,17 @@ namespace Kunde_SPA.Controllers
             return BadRequest();
         }
 
+        public async Task<ActionResult> HentEnBillett(int id)
+        {
+            Billett hentetBillett = await _billettDb.HentEnBillett(id);
+
+            if(hentetBillett == null)
+            {
+                _log.LogInformation("Fant ikke billetten i databasen");
+                return NotFound();
+            }
+            return Ok(hentetBillett);
+        }
         public async Task<ActionResult> HentAlleReiser()
         {
             //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
