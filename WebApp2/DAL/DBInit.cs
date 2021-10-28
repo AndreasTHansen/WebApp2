@@ -13,7 +13,7 @@ namespace KundeApp2.DAL
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetService<BillettContekst>();
+                var context = serviceScope.ServiceProvider.GetService<DBContext>();
 
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
