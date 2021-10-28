@@ -7,10 +7,9 @@ namespace KundeApp2.DAL
 {
     public interface IKundeRepository
     {
-        Task<bool> Lagre(Kunde innKunde);
-        Task<List<Kunde>> HentAlle();
-        Task<bool> Slett(int id);
-        Task<Kunde> HentEn(int id);
-        Task<bool> Endre(Kunde endreKunde);
+        Task<List<Kunde>> HentAlleKunder();
+        Task<bool> EndreKunde(Kunde endreKunde);
+        Task<bool> SlettKunde(int id);
+        Task<bool> LagreKunde(Kunde innKunde);
     }
 }

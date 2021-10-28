@@ -52,9 +52,6 @@ export class Endre {
           this.skjema.patchValue({ id: kunde.id });
           this.skjema.patchValue({ fornavn: kunde.fornavn });
           this.skjema.patchValue({ etternavn: kunde.etternavn });
-          this.skjema.patchValue({ adresse: kunde.adresse });
-          this.skjema.patchValue({ postnr: kunde.postnr });
-          this.skjema.patchValue({ poststed: kunde.poststed });
         },
         error => console.log(error)
       );
@@ -65,9 +62,6 @@ export class Endre {
     endretKunde.id = this.skjema.value.id;
     endretKunde.fornavn = this.skjema.value.fornavn;
     endretKunde.etternavn = this.skjema.value.etternavn;
-    endretKunde.adresse = this.skjema.value.adresse;
-    endretKunde.postnr = this.skjema.value.postnr;
-    endretKunde.poststed = this.skjema.value.poststed;
 
     this.http.put("api/kunde/", endretKunde)
       .subscribe(

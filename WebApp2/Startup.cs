@@ -26,7 +26,7 @@ namespace Kunde_SPA
         {
             services.AddControllers();
 
-            services.AddDbContext<KundeContext>(options =>
+            services.AddDbContext<BillettContekst>(options =>
                             options.UseSqlite("Data Source=Kunde.db"));
             services.AddScoped<IKundeRepository, KundeRepository>();
             
@@ -44,7 +44,7 @@ namespace Kunde_SPA
             {
                 app.UseDeveloperExceptionPage();
                 loggerFactory.AddFile("Logs/KundeLog.txt");
-                DBInit.Seed(app); // denne m? fjernes dersom vi vil beholde dataene i databasen og ikke initialisere 
+                DbInit.Initialize(app); // denne m? fjernes dersom vi vil beholde dataene i databasen og ikke initialisere 
             }
             else
             {

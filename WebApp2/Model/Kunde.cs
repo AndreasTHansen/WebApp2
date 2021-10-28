@@ -5,16 +5,15 @@ namespace KundeApp2.Model
 {
      public class Kunde
      {
-        public int Id { get; set; }
+        public int id { get; set; }
         [RegularExpression(@"[a-zA-ZæøåÆØÅ. \-]{2,30}")]
-        public string Fornavn { get; set; }
-        [RegularExpression(@"[a-zA-ZæøåÆØÅ. \-]{2,30}")]
-        public string Etternavn { get; set; }
-        [RegularExpression(@"[0-9a-zA-ZæøåÆØÅ. \-]{2,30}")]
-        public string Adresse { get; set; }
-        [RegularExpression(@"[0-9]{4}")]
-        public string Postnr { get; set; }
-        [RegularExpression(@"[a-zA-ZæøåÆØÅ. \-]{2,30}")]
-        public string Poststed { get; set; }
+        public string fornavn { get; set; }
+        public string etternavn { get; set; }
+        public string epost { get; set; }
+        public string mobilnummer { get; set; }
+        public string kortnummer { get; set; }
+        public string utlopsdato { get; set; }
+        public int cvc { get; set; }
+
     }
 }

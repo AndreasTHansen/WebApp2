@@ -42,9 +42,8 @@ export class Lagre {
 
     lagretKunde.fornavn = this.skjema.value.fornavn;
     lagretKunde.etternavn = this.skjema.value.etternavn;
-    lagretKunde.adresse = this.skjema.value.adresse;
-    lagretKunde.postnr = this.skjema.value.postnr;
-    lagretKunde.poststed = this.skjema.value.poststed;
+    lagretKunde.epost = this.skjema.value.adresse;
+    lagretKunde.mobilnummer = this.skjema.value.postnr;
 
     this.http.post("api/kunde", lagretKunde)
       .subscribe(retur => {
