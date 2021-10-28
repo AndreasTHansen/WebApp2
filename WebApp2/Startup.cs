@@ -1,4 +1,5 @@
 using System;
+using Kunde_SPA.DAL;
 using KundeApp2.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,8 +28,9 @@ namespace Kunde_SPA
             services.AddControllers();
 
             services.AddDbContext<BillettContekst>(options =>
-                            options.UseSqlite("Data Source=Kunde.db"));
+                            options.UseSqlite("Data Source=Billett.db"));
             services.AddScoped<IKundeRepository, KundeRepository>();
+            services.AddScoped<IBillettRepository, BillettRepository>();
             
           // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -43,7 +45,7 @@ namespace Kunde_SPA
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                loggerFactory.AddFile("Logs/KundeLog.txt");
+                loggerFactory.AddFile("Logs/log.txt");
                 DbInit.Initialize(app); // denne m? fjernes dersom vi vil beholde dataene i databasen og ikke initialisere 
             }
             else
