@@ -18,14 +18,11 @@ export class Lagre {
     etternavn: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])
     ],
-    adresse: [
+    mobilnummer: [
       null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])
     ],
-    postnr: [
+    epost: [
       null, Validators.compose([Validators.required, Validators.pattern("[0-9]{4}")])
-    ],
-    poststed: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])
     ]
   }
 
@@ -42,8 +39,8 @@ export class Lagre {
 
     lagretKunde.fornavn = this.skjema.value.fornavn;
     lagretKunde.etternavn = this.skjema.value.etternavn;
-    lagretKunde.epost = this.skjema.value.adresse;
-    lagretKunde.mobilnummer = this.skjema.value.postnr;
+    lagretKunde.mobilnummer = this.skjema.value.mobilnummer;
+    lagretKunde.epost = this.skjema.value.epost;
 
     this.http.post("api/kunde", lagretKunde)
       .subscribe(retur => {
