@@ -8,7 +8,7 @@ import { BillettListe } from './liste/billettListe';
 const appRoots: Routes = [
   { path: 'lagre', component: Lagre },
   { path: 'liste', component: Liste },
-  { path: 'endre/:id', component: Endre, },
+  { path: 'endre/:id', component: Endre },
   { path: '', redirectTo: '/liste', pathMatch: 'full' },
   { path: 'billettListe', component: BillettListe }
 ]

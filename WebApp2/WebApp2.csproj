@@ -34,6 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ClientApp\src\app\login\login.html" />
+    <Content Include="ClientApp\src\app\login\login.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\lagre\" />
     <Folder Include="ClientApp\src\app\meny\" />
   </ItemGroup>
