@@ -32,14 +32,13 @@ namespace Kunde_SPA.Controllers
         public async Task<ActionResult> HentAlle()
         {
 
-            List<Billett> alleBilletter = await _billettDb.HentAlle();
-            if (alleBilletter == null)
-            {
-                return NotFound();
-            }
-            return Ok(alleBilletter);
+                List<Billett> alleBilletter = await _billettDb.HentAlle();
+                if (alleBilletter == null)
+                {
+                    return NotFound();
+                }
+                return Ok(alleBilletter);
         }
-
         [HttpPost]
         public async Task<ActionResult> Lagre(Billett innBillett)
         {
