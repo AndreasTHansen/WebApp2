@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>  Billetter: </h2>
+  <div>
+    <div class="col-md-12">
+      <div *ngIf="laster">Laster billetter.....</div>
+      <table class="table table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>Kunde id</th>
+            <th>Kunde</th>
+            <th>Reise id</th>
+            <th>Reise</th>
+            <th>Total Pris</th>
+            <th>Antall barn</th>
+            <th>Antall voksne</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let billett of alleBilletter">
+          <tr>
+            <td>{{billett.kundeId}}</td>
+            <td>{{billett.fornavn}} {{billett.etternavn}}</td>
+            <td>{{billett.reiseId}}</td>
+            <td>{{billett.reiseFra}} - {{billett.reiseTil}}</td>
+            <td>{{billett.totalPris}}</td>
+            <td>{{billett.antallBarn}}</td>
+            <td>{{billett.antallVoksne}}</td>
+
+            <td><button class="btn btn-danger" (click)="sletteBillett(billett.id)">Slett</button></td>
+            <td><button class="btn btn-success" [routerLink]="['/endreBillett',billett.id]">Endre</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class='btn btn-primary' routerLink="/lagre">Lagre billett</button>
+    </div>
+  </div>
+</div>

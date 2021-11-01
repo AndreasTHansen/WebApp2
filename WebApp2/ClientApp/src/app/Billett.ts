@@ -4,7 +4,7 @@ export class Billett {
   antallBarn: number;
   totalPris: number;
   kundeId: number;
-  fornavn: number;
+  fornavn: string;
   etternavn: string;
   mobilnummer: string;
   epost: string;
