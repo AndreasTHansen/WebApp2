@@ -32,14 +32,13 @@ namespace Kunde_SPA.Controllers
         public async Task<ActionResult> HentAlle()
         {
 
-            List<Billett> alleBilletter = await _billettDb.HentAlle();
-            if (alleBilletter == null)
-            {
-                return NotFound();
-            }
-            return Ok(alleBilletter);
+                List<Billett> alleBilletter = await _billettDb.HentAlle();
+                if (alleBilletter == null)
+                {
+                    return NotFound();
+                }
+                return Ok(alleBilletter);
         }
-
         [HttpPost]
         public async Task<ActionResult> Lagre(Billett innBillett)
         {
@@ -83,7 +82,7 @@ namespace Kunde_SPA.Controllers
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest();
         }
-
+        [HttpGet("{id}")]
         public async Task<ActionResult> HentEnBillett(int id)
         {
             Billett hentetBillett = await _billettDb.HentEnBillett(id);

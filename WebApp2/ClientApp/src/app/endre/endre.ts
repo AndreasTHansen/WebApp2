@@ -14,19 +14,16 @@ export class Endre {
   validering = {
     id: [""],
     fornavn: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ -]{2,30}")])
     ],
     etternavn: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
     ],
-    adresse: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9a-zA-ZøæåØÆÅ\\-. ]{2,30}")])
+    mobilnummer: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9\.\ \-]{8,12}")])
     ],
-    postnr: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{4}")])
-    ],
-    poststed: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ\\-. ]{2,30}")])
+    epost: [
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
     ]
   }
 

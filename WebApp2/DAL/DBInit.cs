@@ -75,6 +75,7 @@ namespace KundeApp2.DAL
                 context.Reiser.Add(reise18);
                 context.Reiser.Add(reise19);
                 context.Kunder.Add(kunde1);
+                context.Billetter.Add(billett1);
 
 
                 //Hentet fra fagstoff

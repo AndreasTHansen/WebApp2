@@ -53,10 +53,10 @@ namespace KundeApp2.Controllers
         [HttpPut]
         public async Task<ActionResult> EndreKunde(Kunde endreKunde)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            {
-                return Unauthorized();
-            }
+            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            //{
+            //    return Unauthorized();
+            //}
             if (ModelState.IsValid)
             {
                 bool endreOK = await _billettDb.EndreKunde(endreKunde);

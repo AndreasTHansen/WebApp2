@@ -1,5 +1,6 @@
 ﻿using Kunde_SPA.DAL;
 using Kunde_SPA.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -27,10 +28,10 @@ namespace Kunde_SPA.Controllers
         [HttpGet]
         public async Task<ActionResult> HentAlleReiser()
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            //{
-            //    return Unauthorized("Ikke logget inn");
-            //}
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
             List<Reise> reiseListe = await _billettDb.HentAlleReiser();
             return Ok(reiseListe);
         }

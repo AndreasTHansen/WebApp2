@@ -8,6 +8,7 @@ import { Lagre } from './lagre/lagre';
 import { Liste } from './liste/liste';
 import { Endre } from './endre/endre';
 import { Meny } from './meny/meny';
+import { BillettListe } from './liste/billettListe';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
     Lagre,
     Liste,
     Endre,
-    Meny
+    Meny,
+    BillettListe
   ],
   imports: [
     BrowserModule,
