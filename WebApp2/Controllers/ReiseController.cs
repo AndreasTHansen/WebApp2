@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Kunde_SPA.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class ReiseController : ControllerBase
     {
         private IReiseRepository _billettDb;
