@@ -83,7 +83,7 @@ namespace Kunde_SPA.Controllers
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest();
         }
-
+        [HttpGet("{id}")]
         public async Task<ActionResult> HentEnBillett(int id)
         {
             Billett hentetBillett = await _billettDb.HentEnBillett(id);
