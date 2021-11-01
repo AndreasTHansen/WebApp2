@@ -56,7 +56,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("Billett lagret", resultat.Value);
+            Assert.Equal("",resultat.Value);
         }
 
         [Fact]
@@ -611,7 +611,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("Kunden ble endret", resultat.Value);
+            Assert.Equal("", resultat.Value);
         }
 
         [Fact]
@@ -630,7 +630,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
-            Assert.Equal("Kunden kunne ikke endres", resultat.Value);
+            Assert.Equal("", resultat.Value);
         }
 
         [Fact]
@@ -672,7 +672,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
-            Assert.Equal("Ikke logget inn", resultat.Value);
+            Assert.Equal("", resultat.Value);
         }
     }
 }
