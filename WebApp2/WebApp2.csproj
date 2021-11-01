@@ -35,7 +35,6 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\lagre\" />
-    <Folder Include="ClientApp\src\app\endre\" />
     <Folder Include="ClientApp\src\app\meny\" />
   </ItemGroup>
 

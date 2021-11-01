@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Kunde } from "../Kunde";
+import { Billett } from "../Billett";
 
 @Component({
-  templateUrl: "endre.html"
+  templateUrl: "endreBillett.html"
 })
-export class Endre {
+export class EndreBillett {
   skjema: FormGroup;
-  
+
   validering = {
     id: [""],
     fornavn: [
@@ -28,8 +28,8 @@ export class Endre {
   }
 
   constructor(private http: HttpClient, private fb: FormBuilder,
-              private route: ActivatedRoute, private router: Router) {
-      this.skjema = fb.group(this.validering);
+    private route: ActivatedRoute, private router: Router) {
+    this.skjema = fb.group(this.validering);
   }
 
   ngOnInit() {
@@ -39,30 +39,30 @@ export class Endre {
   }
 
   vedSubmit() {
-      this.endreEnKunde();
+    this.endreEnKunde();
   }
 
   endreKunde(id: number) {
-    this.http.get<Kunde>("api/kunde/" + id)
+    this.http.get<Billett>("api/billett/" + id)
       .subscribe(
-        kunde => {
-          this.skjema.patchValue({ id: kunde.id });
-          this.skjema.patchValue({ fornavn: kunde.fornavn });
-          this.skjema.patchValue({ etternavn: kunde.etternavn });
-          this.skjema.patchValue({ epost: kunde.epost });
-          this.skjema.patchValue({ mobilnummer: kunde.mobilnummer });
+        billett => {
+          this.skjema.patchValue({ id: billett.id });
+          this.skjema.patchValue({ fornavn: billett.fornavn });
+          this.skjema.patchValue({ etternavn: billett.etternavn });
+          this.skjema.patchValue({ epost: billett.epost });
+          this.skjema.patchValue({ mobilnummer: billett.mobilnummer });
         },
         error => console.log(error)
       );
   }
 
   endreEnKunde() {
-    const endretKunde = new Kunde();
-    endretKunde.id = this.skjema.value.id;
-    endretKunde.fornavn = this.skjema.value.fornavn;
-    endretKunde.etternavn = this.skjema.value.etternavn;
+    const endretBillett = new Billett();
+    endretBillett.id = this.skjema.value.id;
+    endretBillett.fornavn = this.skjema.value.fornavn;
+    endretBillett.etternavn = this.skjema.value.etternavn;
 
-    this.http.put("api/kunde/", endretKunde)
+    this.http.put("api/billett/", endretBillett)
       .subscribe(
         retur => {
           this.router.navigate(['/liste']);
