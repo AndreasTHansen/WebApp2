@@ -2,8 +2,10 @@
   <div class="col-md-4">
     <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
       <div class="form-group">
-        <label>Fornavn</label>
-        <input class="form-control" formControlName="fornavn" />
+        <label>Kunde</label>
+        <select class="form-control" formControlName="selectKunde" [(ngModel] ="selectedKundeId" (change)="setKunde(i)">
+          <option *ngFor="let kunde of kundeListe"> </option>
+        </select>
         <p class="alert alert-warning" [hidden]="skjema.controls.fornavn.valid || (skjema.controls.fornavn.pristine && !submitted)">
           Fornavn er obligatorisk.
         </p>

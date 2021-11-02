@@ -3,12 +3,26 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Billett } from "../Billett";
+import { Kunde } from "../Kunde";
+import { Reise } from "../Reise"
 
 @Component({
-  templateUrl: "lagre.html"
+  templateUrl: "billettLagre.html"
 })
-export class Lagre {
+export class BillettLagre {
+  alleKunder: Array<Kunde>;
+  reiseListe: Array<Reise>;
   skjema: FormGroup;
+
+  hentAlleKunder() {
+    this.http.get<Kunde[]>("api/kunde/")
+      .subscribe(kundene => {
+        this.alleKunder = kundene;
+        this.laster = false;
+      },
+        error => console.log(error)
+      );
+  };
 
   validering = {
     id: [""],
