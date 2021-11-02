@@ -1,23 +1,47 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Billett } from "../Billett";
 import { Kunde } from "../Kunde";
 import { Reise } from "../Reise"
+
+import { Inject, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   templateUrl: "billettLagre.html"
 })
 export class BillettLagre {
   alleKunder: Array<Kunde>;
-  reiseListe: Array<Reise>;
+  alleReiser: Array<Reise>;
+
   skjema: FormGroup;
+  laster: boolean;
+  kundeListe: FormGroup;
+
+  @ViewChild('kundeListe', { static: true }) logginnScreen: ElementRef;
+ 
+
+  ngOnInit() {
+    this.laster = true;
+    this.hentAlleKunder();
+    this.hentAlleReiser();
+  }
 
   hentAlleKunder() {
     this.http.get<Kunde[]>("api/kunde/")
       .subscribe(kundene => {
         this.alleKunder = kundene;
+        this.laster = false;
+      },
+        error => console.log(error)
+      );
+  };
+
+  hentAlleReiser() {
+    this.http.get<Reise[]>("api/reise/")
+      .subscribe(reisene => {
+        this.alleReiser = reisene;
         this.laster = false;
       },
         error => console.log(error)
@@ -42,10 +66,15 @@ export class BillettLagre {
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
     this.skjema = fb.group(this.validering);
+    
   }
 
   vedSubmit() {
     this.lagreKunde();
+  }
+
+  visKundeListe() {
+    this.kundeListe.nativeElement.hidden = true;
   }
 
   lagreKunde() {

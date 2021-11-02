@@ -11,6 +11,7 @@ import { BillettListe } from './liste/billettListe';
 import { BillettLagre } from './lagre/billettLagre';
 import { ReiseListe } from "./liste/reiseListe";
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,11 @@ import { AppRoutingModule } from './app-routing.module';
     Meny,
     BillettListe,
     BillettLagre,
-    BillettListe,
     ReiseListe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule

@@ -13,8 +13,7 @@ const appRoots: Routes = [
   { path: 'endre/:id', component: Endre },
   { path: '', redirectTo: '/liste', pathMatch: 'full' },
   { path: 'billettListe', component: BillettListe },
-  {path: 'billettLagre', component: BillettLagre}
-  { path: 'billettListe', component: BillettListe },
+  {path: 'billettLagre', component: BillettLagre},
   { path: 'reiseListe', component: ReiseListe },
   { path: '', redirectTo: '/liste', pathMatch: 'full' }
 ]
