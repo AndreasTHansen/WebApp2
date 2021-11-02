@@ -18,6 +18,8 @@ export class BillettLagre {
   skjema: FormGroup;
   laster: boolean;
 
+  valgtKunde: Kunde;
+
   @ViewChild('kundeListe', { static: true }) kundeListe: ElementRef;
  
 
@@ -73,13 +75,24 @@ export class BillettLagre {
   }
 
   visKundeListe() {
-    this.kundeListe.nativeElement.hidden = true;
+    this.kundeListe.nativeElement.hidden = false;
+  }
+
+  setKunde(id) {
+
+    for (let kunde of this.alleKunder) {
+      if (kunde.id == id) {
+        this.valgtKunde = kunde;
+      };
+    };
+
   }
 
   lagreKunde() {
     const lagretBillett = new Billett();
 
     lagretBillett.fornavn = this.skjema.value.fornavn;
+    lagretBillett.kundeId = this.skjema.value.kundeid;
     lagretBillett.etternavn = this.skjema.value.etternavn;
     lagretBillett.mobilnummer = this.skjema.value.mobilnummer;
     lagretBillett.epost = this.skjema.value.epost;

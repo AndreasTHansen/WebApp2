@@ -1,15 +1,16 @@
 <div class="container">
   <div class="col-md-4">
     <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
-      <div class="form-group" formGroupName="kunde">
-        <label>Kunde</label>
-        <button class="btn btn-success" (click) ="visKundeListe()"> Velg kunde </button>
+      <div class="form-group">
+        <label>Kunde: {{valgtKunde.fornavn}} {{valgtKunde.etternavn}} </label>
+        <br />
+        <button type="button" class="btn btn-success" (click) ="visKundeListe()"> Velg kunde </button>
         <table id="kundeListe" #kundeListe hidden>
           <tbody *ngFor="let kunde of alleKunder">
-            <tr id={{kunde.id}}>
+            <tr>
               <td>{{kunde.fornavn}}</td>
               <td>{{kunde.etternavn}}</td>
-              <td><button class="btn btn-success" (click)="velgKunde()"> Velg kunde </button></td>
+              <td><button type="button" class="btn btn-success" (click)="setKunde(kunde)"{{kunde.id}}> Velg kunde </button></td>
             </tr>
           </tbody>
         </table>
