@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\Billett.ts" />
-    <None Remove="ClientApp\src\app\liste\reiseListe.ts" />
     <None Remove="ClientApp\src\app\Reise.ts" />
   </ItemGroup>
 
@@ -46,7 +45,6 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\Billett.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\liste\reiseListe.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Reise.ts" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
