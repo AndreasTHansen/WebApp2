@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Reise } from "../Reise";
+import { error } from "protractor";
 
 
 @Component({
@@ -35,9 +36,9 @@ export class ReiseListe {
         this.http.delete("api/reise/" + id)
             .subscribe(retur => {
                 this.hentAlleReiser();
-                this.router.navigate(['/liste']);
+                this.router.navigate(['/reiseiste']);
             },
-                error => console.log(error)
+              error => console.log(error)
             );
     };
 }

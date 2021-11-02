@@ -56,6 +56,7 @@ export class EndreReise {
     this.http.get<Reise>("api/reise/" + id)
       .subscribe(
         reise => {
+          this.skjema.patchValue({ id: reise.id });
           this.skjema.patchValue({ reiseTil: reise.reiseTil });
           this.skjema.patchValue({ reiseFra: reise.reiseFra });
           this.skjema.patchValue({ datoAnkomst: reise.datoAnkomst });
@@ -71,8 +72,11 @@ export class EndreReise {
   endreReise() {
     const endretReise = new Reise();
 
+    endretReise.id = this.skjema.value.id;
     endretReise.reiseFra = this.skjema.value.reiseFra;
     endretReise.reiseTil = this.skjema.value.reiseTil;
+    endretReise.tidspunktFra = this.skjema.value.tidspunktFra;
+    endretReise.tidspunktTil = this.skjema.value.tidspunktTil;
     endretReise.datoAnkomst = this.skjema.value.datoAnkomst;
     endretReise.datoAvreise = this.skjema.value.datoAvreise;
     endretReise.reisePris = this.skjema.value.pris;

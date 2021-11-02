@@ -1,6 +1,7 @@
 <div class="container">
   <div class="col-md-4">
     <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
+      <input class="form-control" formControlName="id" type="hidden" />
       <div class="form-group">
         <label>Reise Fra</label>
         <input class="form-control" formControlName="reiseFra" />
