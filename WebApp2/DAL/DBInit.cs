@@ -52,10 +52,6 @@ namespace KundeApp2.DAL
 
                 var kort1 = new Kort { kortnummer = "4567890", cvc = 123, utlopsdato = "03/04/2022" };
                 var kunde1 = new Kunder { fornavn = "Anders", etternavn = "Ottersland", mobilnummer = "41251290", epost = "anderh@gmail.com", kort = kort1 };
-                var kunde2 = new Kunder { fornavn = "Andreas", etternavn = "Hansen", mobilnummer = "41251291", epost = "andreas@gmail.com", kort = kort1 };
-                var kunde3 = new Kunder { fornavn = "Hannah", etternavn = "Nilsen", mobilnummer = "41251292", epost = "Hanna@gmail.com", kort = kort1 };
-
-
                 var billett1 = new Billetter { antallBarn = 0, antallVoksne = 1, reise = reise5, totalPris = 1000, kunde = kunde1 };
 
 
@@ -78,11 +74,7 @@ namespace KundeApp2.DAL
                 context.Reiser.Add(reise17);
                 context.Reiser.Add(reise18);
                 context.Reiser.Add(reise19);
-
                 context.Kunder.Add(kunde1);
-                context.Kunder.Add(kunde2);
-                context.Kunder.Add(kunde3);
-
                 context.Billetter.Add(billett1);
 
 
