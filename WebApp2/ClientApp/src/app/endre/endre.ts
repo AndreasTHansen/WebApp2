@@ -61,6 +61,9 @@ export class Endre {
     endretKunde.id = this.skjema.value.id;
     endretKunde.fornavn = this.skjema.value.fornavn;
     endretKunde.etternavn = this.skjema.value.etternavn;
+    endretKunde.epost = this.skjema.value.epost;
+    endretKunde.mobilnummer = this.skjema.value.mobilnummer;
+   
 
     this.http.put("api/kunde/", endretKunde)
       .subscribe(

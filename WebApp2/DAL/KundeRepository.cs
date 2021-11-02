@@ -93,6 +93,7 @@ namespace KundeApp2.DAL
                 endreObjekt.etternavn = endreKunde.etternavn;
                 endreObjekt.epost = endreKunde.epost;
                 endreObjekt.mobilnummer = endreKunde.mobilnummer;
+                await _billettDb.SaveChangesAsync();
             }
             catch (Exception e)
             {

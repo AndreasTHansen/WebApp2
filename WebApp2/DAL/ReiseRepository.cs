@@ -84,6 +84,7 @@ namespace Kunde_SPA.DAL
                 endreObjekt.datoAnkomst = endreReise.datoAnkomst;
                 endreObjekt.datoAvreise = endreReise.datoAvreise;
                 endreObjekt.reisePris = endreReise.reisePris;
+                await _billettDb.SaveChangesAsync();
             }
             catch (Exception e)
             {
