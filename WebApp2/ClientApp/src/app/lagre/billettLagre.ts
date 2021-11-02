@@ -13,6 +13,7 @@ export class BillettLagre {
   alleKunder: Array<Kunde>;
   reiseListe: Array<Reise>;
   skjema: FormGroup;
+  laster: boolean;
 
   hentAlleKunder() {
     this.http.get<Kunde[]>("api/kunde/")

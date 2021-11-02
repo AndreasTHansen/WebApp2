@@ -4,27 +4,32 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Lagre } from './lagre/lagre';
-import { LagreReise } from './lagre/lagreReise';
 import { Liste } from './liste/liste';
 import { Endre } from './endre/endre';
 import { Meny } from './meny/meny';
 import { BillettListe } from './liste/billettListe';
 import { BillettLagre } from './lagre/billettLagre';
 import { ReiseListe } from "./liste/reiseListe";
+import { LagreReise } from './lagre/lagreReise';
+import { EndreReise } from './endre/endreReise';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Lagre,
-    LagreReise,
+    Meny,
+
+    Lagre,  
     Liste,
     Endre,
-    Meny,
+
     BillettListe,
     BillettLagre,
     BillettListe,
-    ReiseListe
+
+    ReiseListe,
+    LagreReise,
+    EndreReise
   ],
   imports: [
     BrowserModule,
