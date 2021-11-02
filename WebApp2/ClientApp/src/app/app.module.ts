@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Lagre } from './lagre/lagre';
+import { LagreReise } from './lagre/lagreReise';
 import { Liste } from './liste/liste';
 import { Endre } from './endre/endre';
 import { Meny } from './meny/meny';
@@ -15,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     Lagre,
+    LagreReise,
     Liste,
     Endre,
     Meny,

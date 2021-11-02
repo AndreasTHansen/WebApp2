@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Lagre} from './lagre/lagre';
+import { Lagre } from './lagre/lagre';
+import { LagreReise } from './lagre/lagreReise';
 import { Liste } from './liste/liste';
 import { Endre } from './endre/endre';
 import { BillettListe } from './liste/billettListe';
@@ -8,6 +9,7 @@ import { ReiseListe } from "./liste/reiseListe";
 
 const appRoots: Routes = [
   { path: 'lagre', component: Lagre },
+  { path: 'lagreReise', component: LagreReise },
   { path: 'liste', component: Liste },
   { path: 'endre/:id', component: Endre },
   { path: 'billettListe', component: BillettListe },
