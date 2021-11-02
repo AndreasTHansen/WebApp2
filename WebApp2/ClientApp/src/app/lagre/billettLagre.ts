@@ -17,9 +17,8 @@ export class BillettLagre {
 
   skjema: FormGroup;
   laster: boolean;
-  kundeListe: FormGroup;
 
-  @ViewChild('kundeListe', { static: true }) logginnScreen: ElementRef;
+  @ViewChild('kundeListe', { static: true }) kundeListe: ElementRef;
  
 
   ngOnInit() {
