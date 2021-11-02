@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\Billett.ts" />
+    <None Remove="ClientApp\src\app\endre\endreReise.ts" />
     <None Remove="ClientApp\src\app\lagre\lagreReise.ts" />
     <None Remove="ClientApp\src\app\Reise.ts" />
   </ItemGroup>
@@ -45,6 +46,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\Billett.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\endre\endreReise.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\lagre\lagreReise.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Reise.ts" />
   </ItemGroup>
