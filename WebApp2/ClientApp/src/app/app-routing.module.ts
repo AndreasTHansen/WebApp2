@@ -5,6 +5,7 @@ import { Liste } from './liste/liste';
 import { Endre } from './endre/endre';
 import { BillettListe } from './liste/billettListe';
 import { BillettLagre } from './lagre/billettLagre';
+import { ReiseListe } from "./liste/reiseListe";
 
 const appRoots: Routes = [
   { path: 'lagre', component: Lagre },
@@ -13,6 +14,9 @@ const appRoots: Routes = [
   { path: '', redirectTo: '/liste', pathMatch: 'full' },
   { path: 'billettListe', component: BillettListe },
   {path: 'billettLagre', component: BillettLagre}
+  { path: 'billettListe', component: BillettListe },
+  { path: 'reiseListe', component: ReiseListe },
+  { path: '', redirectTo: '/liste', pathMatch: 'full' }
 ]
 
 @NgModule({
