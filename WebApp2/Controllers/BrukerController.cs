@@ -1,5 +1,6 @@
 ﻿using Kunde_SPA.DAL;
 using Kunde_SPA.Model;
+using KundeApp2.DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,14 +17,14 @@ namespace Kunde_SPA.Controllers
     public class BrukerController : ControllerBase
     {
 
-        private readonly IBillettRepository _billettDb;
+        private readonly IBrukerRepository _billettDb;
 
         private ILogger<BrukerController> _log;
 
         private const string _loggetInn = "loggetInn";
         private const string _ikkeLoggetInn = "";
 
-        public BrukerController(IBillettRepository billettDb, ILogger<BrukerController> log)
+        public BrukerController(IBrukerRepository billettDb, ILogger<BrukerController> log)
         {
             _billettDb = billettDb;
             _log = log;
