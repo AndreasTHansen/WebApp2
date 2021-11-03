@@ -21,12 +21,6 @@ export class BillettEndre {
     antallVoksne: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
     ],
-    mobilnummer: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9\.\ \-]{8,12}")])
-    ],
-    epost: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
-    ],
     totalPris: [
       null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{8,12}")])
     ]
@@ -56,6 +50,7 @@ export class BillettEndre {
           this.skjema.patchValue({ id: billett.id });
           this.skjema.patchValue({ antallBarn: billett.antallBarn });
           this.skjema.patchValue({ antallVoksne: billett.antallVoksne });
+          this.skjema.patchValue({ totalPris: billett.totalPris });
           this.skjema.patchValue({ epost: billett.epost });
           this.skjema.patchValue({ mobilnummer: billett.mobilnummer });
         },
