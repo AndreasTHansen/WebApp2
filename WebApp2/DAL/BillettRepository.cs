@@ -70,31 +70,35 @@ namespace Kunde_SPA.DAL
                 nyBillett.antallVoksne = innBillett.antallVoksne;
                 nyBillett.totalPris = innBillett.totalPris;
 
-                var nyKunde = new Kunder(); //Vi har ikke lagring av kunde derfor lages det en ny for hver billett i denne versjonen
+                var sjekkKunde = _billettDb.Kunder.Find(innBillett.kundeId);
+                if (sjekkKunde == null)
                 {
+                    var nyKunde = new Kunder();
                     nyKunde.fornavn = innBillett.fornavn;
                     nyKunde.epost = innBillett.epost;
                     nyKunde.etternavn = innBillett.etternavn;
                     nyKunde.id = innBillett.kundeId;
                     nyKunde.mobilnummer = innBillett.mobilnummer;
-                }
+                    nyBillett.kunde = nyKunde;
 
-                var sjekkKort = _billettDb.Kort.Find(innBillett.kortnummer); //Sammme kortnummer kan skje og vi har ikke auto increment så her må det sjekkes
-                if (sjekkKort == null)
-                {
-                    var nyttKort = new Kort();
-                    nyttKort.kortnummer = innBillett.kortnummer;
-                    nyttKort.utlopsdato = innBillett.utlopsdato;
-                    nyttKort.cvc = innBillett.cvc;
-
-                    nyKunde.kort = nyttKort;
+                    var sjekkKort = _billettDb.Kort.Find(innBillett.kortnummer);
+                    if (sjekkKort == null)
+                    {
+                        var nyttKort = new Kort();
+                        nyttKort.kortnummer = innBillett.kortnummer;
+                        nyttKort.utlopsdato = innBillett.utlopsdato;
+                        nyttKort.cvc = innBillett.cvc;
+                        nyKunde.kort = nyttKort;
+                    }
+                    else
+                    {
+                        nyKunde.kort.kortnummer = sjekkKort.kortnummer;
+                    }
                 }
                 else
                 {
-                    nyKunde.kort = sjekkKort;
+                    nyBillett.kunde.id = sjekkKunde.id;
                 }
-
-                nyBillett.kunde = nyKunde;
 
                 var sjekkReise = _billettDb.Reiser.Find(innBillett.reiseId);
                 if (sjekkReise == null)
@@ -115,7 +119,7 @@ namespace Kunde_SPA.DAL
 
                 else
                 {
-                    nyBillett.reise = sjekkReise;
+                    nyBillett.reise.id = sjekkReise.id;
                 }
 
                 _billettDb.Add(nyBillett);
@@ -196,7 +200,7 @@ namespace Kunde_SPA.DAL
                         kundeRad.kort.cvc = endreBillett.cvc;
                         kundeRad.kort.utlopsdato = endreBillett.utlopsdato;
 
-                        //Kortet blir endret i endreKunde, tror ikke det skal være nødvendig å endre kortet her
+                        //Kortet blir endret i endreKunde, skal ikke være nødvendig med å sjekke kort her
 
                         endreObjekt.kunde = kundeRad;
 
@@ -220,6 +224,7 @@ namespace Kunde_SPA.DAL
                         reiseRad.datoAvreise = endreBillett.datoAvreise;
                         reiseRad.tidspunktFra = endreBillett.tidspunktFra;
                         reiseRad.tidspunktTil = endreBillett.tidspunktTil;
+                        endreObjekt.reise = reiseRad;
                     }
                     else
                     {

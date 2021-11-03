@@ -8,8 +8,9 @@ import { Billett } from "../Billett";
 @Component({
   templateUrl: "endreBillett.html"
 })
-export class EndreBillett {
+export class BillettEndre {
   skjema: FormGroup;
+  billetten: Billett;
 
   validering = {
     id: [""],
@@ -34,15 +35,15 @@ export class EndreBillett {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.endreKunde(params.id);
+      this.hentUtBillettSkjema(params.id);
     })
   }
 
   vedSubmit() {
-    this.endreEnKunde();
+    this.endreBillett();
   }
 
-  endreKunde(id: number) {
+  hentUtBillettSkjema(id: number) {
     this.http.get<Billett>("api/billett/" + id)
       .subscribe(
         billett => {
@@ -51,12 +52,13 @@ export class EndreBillett {
           this.skjema.patchValue({ etternavn: billett.etternavn });
           this.skjema.patchValue({ epost: billett.epost });
           this.skjema.patchValue({ mobilnummer: billett.mobilnummer });
+          this.billetten = billett;
         },
         error => console.log(error)
       );
   }
 
-  endreEnKunde() {
+  endreBillett() {
     const endretBillett = new Billett();
     endretBillett.id = this.skjema.value.id;
     endretBillett.fornavn = this.skjema.value.fornavn;
@@ -65,7 +67,7 @@ export class EndreBillett {
     this.http.put("api/billett/", endretBillett)
       .subscribe(
         retur => {
-          this.router.navigate(['/liste']);
+          this.router.navigate(['/billettListe']);
         },
         error => console.log(error)
       );

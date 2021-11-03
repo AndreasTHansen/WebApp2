@@ -5,6 +5,7 @@ import { Liste } from './liste/liste';
 import { Endre } from './endre/endre';
 import { BillettListe } from './liste/billettListe';
 import { BillettLagre } from './lagre/billettLagre';
+import { BillettEndre } from './endre/endreBillett';
 import { ReiseListe } from "./liste/reiseListe";
 import { LagreReise } from './lagre/lagreReise';
 import { EndreReise } from './endre/endreReise';
@@ -15,7 +16,8 @@ const appRoots: Routes = [
   { path: 'endre/:id', component: Endre },
   { path: '', redirectTo: '/liste', pathMatch: 'full' },
   { path: 'billettListe', component: BillettListe },
-   {path: 'billettLagre', component: BillettLagre},
+  { path: 'billettLagre', component: BillettLagre },
+  { path: 'endreBillett/:id', component: BillettEndre},
   { path: 'reiseListe', component: ReiseListe },
   { path: 'lagreReise', component: LagreReise },
   { path: 'endreReise/:id', component: EndreReise },

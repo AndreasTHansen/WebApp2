@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Kunde } from "../Kunde";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SletteModal } from "../modals/sletteModal";
 
 @Component({
   templateUrl: "liste.html"
@@ -10,8 +12,9 @@ import { Kunde } from "../Kunde";
 export class Liste {
   alleKunder: Array<Kunde>;
   laster: boolean;
+  kundeTilSletting: string;
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private modalService: NgbModal) {}
 
   ngOnInit() {
     this.laster = true;
@@ -29,12 +32,34 @@ export class Liste {
   };
 
   sletteKunde(id: number) {
-    this.http.delete("api/kunde/" + id)
-      .subscribe(retur => {
-        this.hentAlleKunder();
-        this.router.navigate(['/liste']);
+
+    this.http.get<Kunde>("api/kunde/" + id)
+      .subscribe(kunde => {
+        this.kundeTilSletting = kunde.fornavn + " " + kunde.etternavn;
+
+        this.visOgSlett(id);
       },
-       error => console.log(error)
+        error => console.log(error)
       );
   };
+
+  visOgSlett(id: number) {
+
+    const sletteModal = this.modalService.open(SletteModal)
+    sletteModal.componentInstance.sletteObjekt = this.kundeTilSletting;
+
+    sletteModal.result.then(retur => {
+      console.log("Lukket med" + retur)
+      if (retur == "Slett") {
+
+        this.http.delete("api/kunde/" + id)
+          .subscribe(retur => {
+            this.hentAlleKunder();
+          },
+            error => alert("Denne reisen kan ikke slettes fordi den finnes i en billett")
+          );
+      }
+      this.router.navigate(['/liste']);
+    });
+  }
 }

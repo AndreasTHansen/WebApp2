@@ -23,6 +23,15 @@ export class Lagre {
     ],
     epost: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
+    ],
+    kortnummer: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{16}")])
+    ],
+    utlopsdato: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9 /]{10,12}")])
+    ],
+    cvc: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{3}")])
     ]
   }
 
@@ -41,6 +50,9 @@ export class Lagre {
     lagretKunde.etternavn = this.skjema.value.etternavn;
     lagretKunde.mobilnummer = this.skjema.value.mobilnummer;
     lagretKunde.epost = this.skjema.value.epost;
+    lagretKunde.kortnummer = this.skjema.value.kortnummer;
+    lagretKunde.utlopsdato = this.skjema.value.utlopsdato;
+    lagretKunde.cvc = this.skjema.value.cvc;
 
     this.http.post("api/kunde", lagretKunde)
       .subscribe(retur => {

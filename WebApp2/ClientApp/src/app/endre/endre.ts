@@ -24,7 +24,8 @@ export class Endre {
     ],
     epost: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
-    ]
+    ],
+    kortnummer: [""]
   }
 
   constructor(private http: HttpClient, private fb: FormBuilder,
@@ -51,6 +52,7 @@ export class Endre {
           this.skjema.patchValue({ etternavn: kunde.etternavn });
           this.skjema.patchValue({ epost: kunde.epost });
           this.skjema.patchValue({ mobilnummer: kunde.mobilnummer });
+          this.skjema.patchValue({ kortnummer: kunde.kortnummer });
         },
         error => console.log(error)
       );
@@ -63,6 +65,7 @@ export class Endre {
     endretKunde.etternavn = this.skjema.value.etternavn;
     endretKunde.epost = this.skjema.value.epost;
     endretKunde.mobilnummer = this.skjema.value.mobilnummer;
+    endretKunde.kortnummer = this.skjema.value.kortnummer;
    
 
     this.http.put("api/kunde/", endretKunde)

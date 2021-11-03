@@ -9,11 +9,16 @@ import { Endre } from './endre/endre';
 import { Meny } from './meny/meny';
 import { BillettListe } from './liste/billettListe';
 import { BillettLagre } from './lagre/billettLagre';
+import { BillettEndre } from './endre/endreBillett';
 import { ReiseListe } from "./liste/reiseListe";
 import { LagreReise } from './lagre/lagreReise';
 import { EndreReise } from './endre/endreReise';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SletteModal } from "./modals/sletteModal";
+import { FeilModal } from "./modals/feilModal";
 
 @NgModule({
   declarations: [
@@ -26,20 +31,25 @@ import { FormsModule } from '@angular/forms';
 
     BillettListe,
     BillettLagre,
-    BillettListe,
+    BillettEndre,
 
     ReiseListe,
     LagreReise,
-    EndreReise
+    EndreReise,
+
+    SletteModal,
+    FeilModal
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SletteModal, FeilModal]
 })
 export class AppModule { }
