@@ -6,6 +6,7 @@ import { SletteModal } from "../modals/sletteModal";
 import { Reise } from "../Reise";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { error } from "protractor";
+import { FeilModal } from "../modals/feilModal";
 
 
 @Component({
@@ -50,10 +51,10 @@ export class ReiseListe {
 
   visOgSlett(id: number) {
 
-    const modal = this.modalService.open(SletteModal)
-    modal.componentInstance.sletteObjekt = this.reiseTilSletting;
+    const sletteModal = this.modalService.open(SletteModal)
+    sletteModal.componentInstance.sletteObjekt = this.reiseTilSletting;
 
-    modal.result.then(retur => {
+    sletteModal.result.then(retur => {
       console.log("Lukket med" + retur)
       if (retur == "Slett") {
 
@@ -61,7 +62,7 @@ export class ReiseListe {
           .subscribe(retur => {
             this.hentAlleReiser();
           },
-            error => console.log(error)
+            error => alert("Denne reisen kan ikke slettes fordi den finnes i en billett")
           );
       }
       this.router.navigate(['/reiseListe']);
