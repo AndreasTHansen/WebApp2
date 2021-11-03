@@ -78,7 +78,7 @@ namespace Kunde_SPA.DAL
             {
                 var endreObjekt = await _billettDb.Reiser.FindAsync(endreReise.id);
                 endreObjekt.reiseFra = endreReise.reiseFra;
-                endreObjekt.reiseTil = endreReise.reiseFra;
+                endreObjekt.reiseTil = endreReise.reiseTil;
                 endreObjekt.tidspunktFra = endreReise.tidspunktFra;
                 endreObjekt.tidspunktTil = endreReise.tidspunktTil;
                 endreObjekt.datoAnkomst = endreReise.datoAnkomst;

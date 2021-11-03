@@ -81,7 +81,7 @@ export class EndreReise {
     endretReise.datoAvreise = this.skjema.value.datoAvreise;
     endretReise.reisePris = this.skjema.value.pris;
 
-    this.http.put("api/reise", endretReise)
+    this.http.put("api/reise/", endretReise)
       .subscribe(retur => {
         this.router.navigate(['/reiseListe']);
       },
