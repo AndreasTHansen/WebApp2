@@ -14,10 +14,11 @@ export class BillettEndre {
 
   validering = {
     id: [""],
-    fornavn: [
+    kortnummer: [""],
+    antallBarn: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ -]{2,30}")])
     ],
-    etternavn: [
+    antallVoksne: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
     ],
     mobilnummer: [
@@ -25,7 +26,11 @@ export class BillettEndre {
     ],
     epost: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
+    ],
+    totalPris: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{8,12}")])
     ]
+    
   }
 
   constructor(private http: HttpClient, private fb: FormBuilder,
@@ -47,12 +52,12 @@ export class BillettEndre {
     this.http.get<Billett>("api/billett/" + id)
       .subscribe(
         billett => {
+          this.billetten = billett;
           this.skjema.patchValue({ id: billett.id });
-          this.skjema.patchValue({ fornavn: billett.fornavn });
-          this.skjema.patchValue({ etternavn: billett.etternavn });
+          this.skjema.patchValue({ antallBarn: billett.antallBarn });
+          this.skjema.patchValue({ antallVoksne: billett.antallVoksne });
           this.skjema.patchValue({ epost: billett.epost });
           this.skjema.patchValue({ mobilnummer: billett.mobilnummer });
-          this.billetten = billett;
         },
         error => console.log(error)
       );
