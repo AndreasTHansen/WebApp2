@@ -9,6 +9,7 @@ import { Endre } from './endre/endre';
 import { Meny } from './meny/meny';
 import { BillettListe } from './liste/billettListe';
 import { BillettLagre } from './lagre/billettLagre';
+import { BillettEndre } from './endre/endreBillett';
 import { ReiseListe } from "./liste/reiseListe";
 import { LagreReise } from './lagre/lagreReise';
 import { EndreReise } from './endre/endreReise';
@@ -30,7 +31,7 @@ import { FeilModal } from "./modals/feilModal";
 
     BillettListe,
     BillettLagre,
-    BillettListe,
+    BillettEndre,
 
     ReiseListe,
     LagreReise,
