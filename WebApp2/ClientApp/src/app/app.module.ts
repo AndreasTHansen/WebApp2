@@ -14,6 +14,9 @@ import { LagreReise } from './lagre/lagreReise';
 import { EndreReise } from './endre/endreReise';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SletteModal } from "./modals/sletteModal";
 
 @NgModule({
   declarations: [
@@ -30,16 +33,20 @@ import { FormsModule } from '@angular/forms';
 
     ReiseListe,
     LagreReise,
-    EndreReise
+    EndreReise,
+    SletteModal
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SletteModal]
 })
 export class AppModule { }

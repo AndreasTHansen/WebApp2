@@ -119,7 +119,7 @@ namespace Kunde_SPA.DAL
 
                 else
                 {
-                    nyBillett.reise = sjekkReise;
+                    nyBillett.reise.id = sjekkReise.id;
                 }
 
                 _billettDb.Add(nyBillett);
