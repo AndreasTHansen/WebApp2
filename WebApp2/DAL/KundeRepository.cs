@@ -138,6 +138,7 @@ namespace KundeApp2.DAL
                     kortRad.kortnummer = innKunde.kortnummer;
                     kortRad.cvc = innKunde.cvc;
                     kortRad.utlopsdato = innKunde.utlopsdato;
+                    nyKunde.kort = kortRad;
                 }
                 else
                 {
