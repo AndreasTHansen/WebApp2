@@ -51,9 +51,6 @@ export class BillettLagre {
 
   validering = {
     id: [""],
-    fornavn: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ -]{2,30}")])
-    ],
     etternavn: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
     ],
@@ -91,8 +88,8 @@ export class BillettLagre {
   lagreKunde() {
     const lagretBillett = new Billett();
 
-    lagretBillett.fornavn = this.skjema.value.fornavn;
-    lagretBillett.kundeId = this.skjema.value.kundeid;
+    lagretBillett.fornavn = this.valgtKunde.fornavn;
+    lagretBillett.kundeId = this.valgtKunde.id;
     lagretBillett.etternavn = this.skjema.value.etternavn;
     lagretBillett.mobilnummer = this.skjema.value.mobilnummer;
     lagretBillett.epost = this.skjema.value.epost;
