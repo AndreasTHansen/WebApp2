@@ -8,7 +8,6 @@ import { Liste } from './liste/liste';
 import { Endre } from './endre/endre';
 import { Meny } from './meny/meny';
 import { BillettListe } from './liste/billettListe';
-import { BillettLagre } from './lagre/billettLagre';
 import { BillettEndre } from './endre/endreBillett';
 import { ReiseListe } from "./liste/reiseListe";
 import { LagreReise } from './lagre/lagreReise';
@@ -34,7 +33,6 @@ import { MenyService } from './meny/meny.service';
     Login,
 
     BillettListe,
-    BillettLagre,
     BillettEndre,
 
     ReiseListe,

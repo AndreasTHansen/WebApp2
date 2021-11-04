@@ -74,7 +74,7 @@ export class Endre {
     this.http.put("api/kunde/", endretKunde)
       .subscribe(
         retur => {
-          this.endretKunde = endretKunde.fornavn + "  " + endretKunde.etternavn;
+          this.endretKunde = "For kunde: " + endretKunde.fornavn + "  " + endretKunde.etternavn;
           const endreModal = this.modalService.open(EndreModal)
           endreModal.componentInstance.endreObjekt = this.endretKunde;
           this.router.navigate(['/liste']);

@@ -611,7 +611,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("", resultat.Value);
+            Assert.Equal("Kunden ble endret", resultat.Value);
         }
 
         [Fact]
