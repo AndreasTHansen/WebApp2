@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Kunde_SPA.DAL;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -88,14 +89,14 @@ namespace KundeApp2.DAL
 
                 //Hentet fra fagstoff
                 // lag en påloggingsbruker
-                //var bruker = new Brukere();
-                //bruker.Brukernavn = "Admin";
-                //var passord = "Test11";
-                //byte[] salt = BillettRepository.LagSalt();
-                //byte[] hash = BillettRepository.LagHash(passord, salt);
-                //bruker.Passord = hash;
-                //bruker.Salt = salt;
-                //context.Brukere.Add(bruker);
+                var bruker = new Brukere();
+                bruker.Brukernavn = "Admin";
+                var passord = "Test11";
+                byte[] salt = BillettRepository.LagSalt();
+                byte[] hash = BillettRepository.LagHash(passord, salt);
+                bruker.Passord = hash;
+                bruker.Salt = salt;
+                context.Brukere.Add(bruker);
 
                 context.SaveChanges();
             }

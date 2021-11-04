@@ -267,7 +267,6 @@ namespace Kunde_SPA.DAL
             return salt;
         }
 
-
         public async Task<bool> LoggInn(Bruker bruker)
         {
             try

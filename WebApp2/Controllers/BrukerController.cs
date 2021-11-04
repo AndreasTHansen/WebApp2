@@ -17,14 +17,14 @@ namespace Kunde_SPA.Controllers
     public class BrukerController : ControllerBase
     {
 
-        private readonly IBrukerRepository _billettDb;
+        private readonly IBillettRepository _billettDb;
 
         private ILogger<BrukerController> _log;
 
         private const string _loggetInn = "loggetInn";
         private const string _ikkeLoggetInn = "";
 
-        public BrukerController(IBrukerRepository billettDb, ILogger<BrukerController> log)
+        public BrukerController(IBillettRepository billettDb, ILogger<BrukerController> log)
         {
             _billettDb = billettDb;
             _log = log;
