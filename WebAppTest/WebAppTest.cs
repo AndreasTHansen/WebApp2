@@ -34,6 +34,10 @@ namespace WebAppTest
         private readonly Mock<IReiseRepository> mockRepR = new Mock<IReiseRepository>();
         private readonly Mock<ILogger<ReiseController>> mockLogR = new Mock<ILogger<ReiseController>>();
 
+        //for bruker
+        private readonly Mock<IBillettRepository> mockRepB = new Mock<IBillettRepository>();
+        private readonly Mock<ILogger<BrukerController>> mockLogB = new Mock<ILogger<BrukerController>>();
+
         private readonly Mock<HttpContext> mockHttpContext = new Mock<HttpContext>();
         private readonly MockHttpSession mockSession = new MockHttpSession();
 
@@ -696,6 +700,104 @@ namespace WebAppTest
             //Assert
             Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
             Assert.Equal("Ikke logget inn", resultat.Value);
+        }
+
+
+        //Bruker controller
+        [Fact]
+        public async Task LoggInnOK()
+        {
+            mockRepB.Setup(k => k.LoggInn(It.IsAny<Bruker>())).ReturnsAsync(true);
+
+            var brukerController = new BrukerController(mockRepB.Object, mockLogB.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            brukerController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            // Act
+            var resultat = await brukerController.LoggInn(It.IsAny<Bruker>()) as OkObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal("", resultat.Value);
+        }
+
+        [Fact]
+        public async Task LoggInnFeilModellOK()
+        {
+            // Arrange
+            mockRepB.Setup(k => k.LoggInn(It.IsAny<Bruker>())).ReturnsAsync(true);
+
+            var brukerController = new BrukerController(mockRepB.Object, mockLogB.Object);
+
+            brukerController.ModelState.AddModelError("BrukerID", "Feil i inputvalidering på server");
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            brukerController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            // Act
+            var resultat = await brukerController.LoggInn(It.IsAny<Bruker>()) as BadRequestObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal("Feil i inputvalidering på server", resultat.Value);
+        }
+
+        [Fact]
+        public async Task LoggInnFeilOK()
+        {
+            mockRepB.Setup(k => k.LoggInn(It.IsAny<Bruker>())).ReturnsAsync(false);
+
+            var brukerController = new BrukerController(mockRepB.Object, mockLogB.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            brukerController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            //Act
+            var resultat = await brukerController.LoggInn(It.IsAny<Bruker>()) as BadRequestObjectResult;
+
+            //Assert
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal("Feil brukernavn eller passord", resultat.Value);
+        }
+
+        [Fact]
+        public async Task LoggUtOK()
+        {
+            mockRepB.Setup(k => k.LoggUt()).ReturnsAsync(true);
+
+            var brukerController = new BrukerController(mockRepB.Object, mockLogB.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            brukerController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            var resultat = await brukerController.LoggUt() as OkObjectResult;
+
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal("", resultat.Value);
+        }
+
+        [Fact]
+        public async Task LoggUtFeilOK()
+        {
+            mockRepB.Setup(k => k.LoggUt()).ReturnsAsync(false);
+
+            var brukerController = new BrukerController(mockRepB.Object, mockLogB.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            brukerController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            //Act
+            var resultat = await brukerController.LoggUt() as BadRequestObjectResult;
+
+            //Assert
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal("Kunne ikke logge ut", resultat.Value);
         }
     }
 }
