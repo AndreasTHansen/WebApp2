@@ -30,6 +30,11 @@ namespace KundeApp2.Controllers
         [HttpGet]
         public async Task<ActionResult> HentAlleKunder()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             List<Kunde> alleKunder = await _billettDb.HentAlleKunder();
             if (alleKunder == null)
             {
@@ -40,6 +45,11 @@ namespace KundeApp2.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> HentEnKunde(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             Kunde hentetKunde = await _billettDb.HentEnKunde(id);
 
             if (hentetKunde == null)
@@ -53,10 +63,10 @@ namespace KundeApp2.Controllers
         [HttpPut]
         public async Task<ActionResult> EndreKunde(Kunde endreKunde)
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            //{
-            //    return Unauthorized();
-            //}
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
             if (ModelState.IsValid)
             {
                 bool endreOK = await _billettDb.EndreKunde(endreKunde);

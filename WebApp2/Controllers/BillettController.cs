@@ -18,6 +18,7 @@ namespace Kunde_SPA.Controllers
         private readonly IBillettRepository _billettDb;
 
         private ILogger<BillettController> _log;
+        private const string _loggetInn = "loggetInn";
 
 
         public BillettController(IBillettRepository billettDb, ILogger<BillettController> log)
@@ -29,17 +30,26 @@ namespace Kunde_SPA.Controllers
         [HttpGet]
         public async Task<ActionResult> HentAlle()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
 
-                List<Billett> alleBilletter = await _billettDb.HentAlle();
-                if (alleBilletter == null)
-                {
-                    return NotFound();
-                }
-                return Ok(alleBilletter);
+            List<Billett> alleBilletter = await _billettDb.HentAlle();
+            if (alleBilletter == null)
+            {
+               return NotFound();
+            }
+               return Ok(alleBilletter);
         }
         [HttpPost]
         public async Task<ActionResult> Lagre(Billett innBillett)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             if (ModelState.IsValid)
             {
                 bool returOK = await _billettDb.Lagre(innBillett);
@@ -56,6 +66,11 @@ namespace Kunde_SPA.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Slett(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             bool returOK = await _billettDb.Slett(id);
             if (!returOK)
             {
@@ -67,6 +82,11 @@ namespace Kunde_SPA.Controllers
         [HttpPut]
         public async Task<ActionResult> EndreBillett(Billett endreBillett)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             if (ModelState.IsValid)
             {
                 bool endreOk = await _billettDb.EndreBillett(endreBillett);
@@ -83,6 +103,11 @@ namespace Kunde_SPA.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> HentEnBillett(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             Billett hentetBillett = await _billettDb.HentEnBillett(id);
 
             if(hentetBillett == null)
