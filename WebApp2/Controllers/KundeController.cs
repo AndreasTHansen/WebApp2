@@ -84,18 +84,31 @@ namespace KundeApp2.Controllers
         [HttpPost]
         public async Task<ActionResult> LagreKunde(Kunde innKunde)
         {
-            bool lagreOK = await _billettDb.LagreKunde(innKunde);
-            if (!lagreOK)
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                _log.LogInformation("Det skjedde noe feil under lagringen");
-                return BadRequest(false);
+                return Unauthorized("Ikke logget inn");
             }
-            _log.LogInformation("Kunde har blitt lagret");
-            return Ok(true);
+            if (ModelState.IsValid)
+            {
+                bool lagreOK = await _billettDb.LagreKunde(innKunde);
+                if (!lagreOK)
+                {
+                    _log.LogInformation("Det skjedde noe feil under lagringen");
+                    return BadRequest(false);
+                }
+                _log.LogInformation("Kunde har blitt lagret");
+                return Ok(true);
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest(false);
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult> SlettKunde(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized("Ikke logget inn");
+            }
             bool slettOk = await _billettDb.SlettKunde(id);
             if (!slettOk)
             {

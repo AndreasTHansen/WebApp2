@@ -382,18 +382,77 @@ namespace WebAppTest
         {
             mockRepK.Setup(k => k.LagreKunde(It.IsAny<Kunde>())).ReturnsAsync(true);
 
-            var billettController = new KundeController(mockRepK.Object, mockLogK.Object);
+            var kundeController = new KundeController(mockRepK.Object, mockLogK.Object);
 
             mockSession[_loggetInn] = _loggetInn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            billettController.ControllerContext.HttpContext = mockHttpContext.Object;
+            kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await billettController.LagreKunde(It.IsAny<Kunde>()) as OkObjectResult;
+            var resultat = await kundeController.LagreKunde(It.IsAny<Kunde>()) as OkObjectResult;
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
             Assert.Equal(true, resultat.Value);
+        }
+        [Fact]
+        public async Task LagreKundeLoggetInnFeilOK()
+        {
+            mockRepK.Setup(k => k.LagreKunde(It.IsAny<Kunde>())).ReturnsAsync(false);
+
+            var kundeController = new KundeController(mockRepK.Object, mockLogK.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            //Act
+            var resultat = await kundeController.LagreKunde(It.IsAny<Kunde>()) as BadRequestObjectResult;
+
+            //Assert
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal(false, resultat.Value);
+        }
+
+        [Fact]
+        public async Task LagreKundeLoggetInnFeilModellOK()
+        {
+            // Arrange
+            mockRepK.Setup(k => k.LagreKunde(It.IsAny<Kunde>())).ReturnsAsync(true);
+
+            var kundeController = new KundeController(mockRepK.Object, mockLogK.Object);
+
+            kundeController.ModelState.AddModelError("Reise Fra", "Feil i inputvalidering på server");
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            // Act
+            var resultat = await kundeController.LagreKunde(It.IsAny<Kunde>()) as BadRequestObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal(false, resultat.Value);
+        }
+        [Fact]
+        public async Task LagreKundeIkkeLoggetInnOK()
+        {
+            //Arrange
+            mockRepK.Setup(k => k.LagreKunde(It.IsAny<Kunde>())).ReturnsAsync(true);
+
+            var kundeController = new KundeController(mockRepK.Object, mockLogK.Object);
+
+            mockSession[_loggetInn] = _ikkeLoggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            //Act
+            var resultat = await kundeController.LagreKunde(It.IsAny<Kunde>()) as UnauthorizedObjectResult;
+
+            //Assert
+            Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
+            Assert.Equal("Ikke logget inn", resultat.Value);
         }
 
         [Fact]
