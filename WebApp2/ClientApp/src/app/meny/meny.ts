@@ -29,4 +29,14 @@ export class Meny {
       );
   };
 
+  toggle() {
+    this.isExpanded = !this.isExpanded;
+  }
+
+  isExpanded = false;
+
+  collapse() {
+    this.isExpanded = false;
+  }
+
 }
