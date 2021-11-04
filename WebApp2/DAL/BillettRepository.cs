@@ -285,6 +285,12 @@ namespace Kunde_SPA.DAL
             {
                 Brukere funnetBruker = await _billettDb.Brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
 
+                //Brukernavn feil
+                if(funnetBruker == null)
+                {
+                    return false;
+                }
+
                 //sjekk passordet
                 byte[] hash = LagHash(bruker.Passord, funnetBruker.Salt);
                 bool ok = hash.SequenceEqual(funnetBruker.Passord);

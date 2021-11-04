@@ -39,7 +39,7 @@ namespace Kunde_SPA.Controllers
                 bool returnOK = await _billettDb.LoggInn(bruker);
                 if (!returnOK)
                 {
-                    _log.LogInformation("Innloggingen feilet for bruker");
+                    _log.LogInformation("Feil brukernavn eller passord");
                     HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
                     return Ok(false);
                 }
