@@ -32,7 +32,7 @@
     <None Remove="ClientApp\src\app\Billett.ts" />
     <None Remove="ClientApp\src\app\endre\endreReise.ts" />
     <None Remove="ClientApp\src\app\lagre\lagreReise.ts" />
-    <None Remove="ClientApp\src\app\modals\feilModal.ts" />
+    <None Remove="ClientApp\src\app\modals\endreModal.ts" />
     <None Remove="ClientApp\src\app\modals\sletteModal.ts" />
     <None Remove="ClientApp\src\app\Reise.ts" />
   </ItemGroup>
@@ -49,7 +49,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\Billett.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\endre\endreReise.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\lagre\lagreReise.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\modals\feilModal.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modals\endreModal.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\modals\sletteModal.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Reise.ts" />
   </ItemGroup>

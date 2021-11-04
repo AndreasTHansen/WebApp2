@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SletteModal } from "./modals/sletteModal";
-import { FeilModal } from "./modals/feilModal";
+import { EndreModal } from "./modals/endreModal";
 
 import { Login } from "./login/login";
 
@@ -41,7 +41,7 @@ import { Login } from "./login/login";
     EndreReise,
 
     SletteModal,
-    FeilModal
+    EndreModal
   ],
   imports: [
     BrowserModule,
@@ -53,6 +53,6 @@ import { Login } from "./login/login";
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [SletteModal, FeilModal]
+  entryComponents: [SletteModal, EndreModal]
 })
 export class AppModule { }

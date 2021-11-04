@@ -6,7 +6,6 @@ import { SletteModal } from "../modals/sletteModal";
 import { Reise } from "../Reise";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { error } from "protractor";
-import { FeilModal } from "../modals/feilModal";
 
 
 @Component({

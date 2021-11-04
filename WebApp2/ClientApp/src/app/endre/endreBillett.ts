@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Billett } from "../Billett";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { EndreModal } from "../modals/endreModal";
 
 @Component({
   templateUrl: "endreBillett.html"
@@ -11,6 +13,7 @@ import { Billett } from "../Billett";
 export class BillettEndre {
   skjema: FormGroup;
   billetten: Billett;
+  billettTilEndring: string;
 
   validering = {
     id: [""],
@@ -30,7 +33,7 @@ export class BillettEndre {
   }
 
   constructor(private http: HttpClient, private fb: FormBuilder,
-    private route: ActivatedRoute, private router: Router) {
+    private route: ActivatedRoute, private router: Router, private modalService: NgbModal) {
     this.skjema = fb.group(this.validering);
   }
 
@@ -75,9 +78,13 @@ export class BillettEndre {
     this.http.put("api/billett/", endretBillett)
       .subscribe(
         retur => {
+          this.billettTilEndring = "Billett-id:  " + endretBillett.id;
+          const endreModal = this.modalService.open(EndreModal)
+          endreModal.componentInstance.endreObjekt = this.billettTilEndring;
           this.router.navigate(['/billettListe']);
         },
         error => console.log(error)
       );
+
   }
 }

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  templateUrl: 'feilModal.html'
+  templateUrl: 'endreModal.html'
 })
-export class FeilModal {
+export class EndreModal {
   constructor(public modal: NgbActiveModal) { }
 }
