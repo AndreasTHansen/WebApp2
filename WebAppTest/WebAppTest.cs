@@ -396,7 +396,7 @@ namespace WebAppTest
             Assert.Equal(true, resultat.Value);
         }
         [Fact]
-        public async Task LagreKundeLoggetFeilOK()
+        public async Task LagreKundeLoggetInnFeilOK()
         {
             mockRepK.Setup(k => k.LagreKunde(It.IsAny<Kunde>())).ReturnsAsync(false);
 
@@ -407,10 +407,10 @@ namespace WebAppTest
             billettController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await billettController.LagreKunde(It.IsAny<Kunde>()) as OkObjectResult;
+            var resultat = await billettController.LagreKunde(It.IsAny<Kunde>()) as BadRequestObjectResult;
 
             // Assert 
-            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
             Assert.Equal(false, resultat.Value);
         }
 
