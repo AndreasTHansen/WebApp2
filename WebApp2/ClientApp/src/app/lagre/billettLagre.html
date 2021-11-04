@@ -87,35 +87,35 @@
     <label>Dato avreise:</label>
     <input class="form-control" formControlName="datoAvreise" />
     <p class="alert alert-warning" [hidden]="skjema.controls.datoAvreise.valid || (skjema.controls.datoAvreise.pristine && !submitted)">
-      Skriv inn en gyldig dato
+      Dato må skrives med formatet dd/mm/yyyy
     </p>
   </div>
   <div class="form-group">
     <label>Dato ankomst:</label>
     <input class="form-control" formControlName="datoAnkomst" />
     <p class="alert alert-warning" [hidden]="skjema.controls.datoAnkomst.valid || (skjema.controls.datoAnkomst.pristine && !submitted)">
-      Skriv inn en gyldig dato
+      Dato må skrives med formatet dd/mm/yyyy
     </p>
   </div>
   <div class="form-group">
     <label>Tidspunkt avreise:</label>
     <input class="form-control" formControlName="tidspunktFra" />
     <p class="alert alert-warning" [hidden]="skjema.controls.tidspunktFra.valid || (skjema.controls.tidspunktFra.pristine && !submitted)">
-      Skriv inn en gyldig dato
+      Tidspunkt må skrives med formatet hh:mm
     </p>
   </div>
   <div class="form-group">
     <label>Tidspunkt ankomst:</label>
     <input class="form-control" formControlName="tidspunktTil" />
     <p class="alert alert-warning" [hidden]="skjema.controls.tidspunktTil.valid || (skjema.controls.tidspunktTil.pristine && !submitted)">
-      Skriv inn et gyldig tidspunkt
+      Tidspunkt må skrives med formatet hh:mm
     </p>
   </div>
   <div class="form-group">
-    <label>Reisen sin pris per person:</label>
+    <label>Reisen's pris':</label>
     <input class="form-control" formControlName="reisePris" type="number" />
     <p class="alert alert-warning" [hidden]="skjema.controls.reisePris.valid || (skjema.controls.reisePris.pristine && !submitted)">
-      Skriv inn et gyldig tidspunkt
+      Må være et gyldig tall
     </p>
   </div>
   <div class="form-group">
