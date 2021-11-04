@@ -1,0 +1,14 @@
+
+<form [formGroup]="loginForm" (ngSubmit)="vedSubmit()">
+  <div class="form-group">
+    <label>Username</label>
+    <input class="form-control" formControlName="username" />
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input class="form-control" formControlName="password" />
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Logg inn</button>
+  </div>
+</form>

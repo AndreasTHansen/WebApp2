@@ -4,12 +4,15 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Kunde } from "../Kunde";
+import { EndreModal } from "../modals/endreModal";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   templateUrl: "endre.html"
 })
 export class Endre {
   skjema: FormGroup;
+  endretKunde: string;
   
   validering = {
     id: [""],
@@ -24,11 +27,12 @@ export class Endre {
     ],
     epost: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
-    ]
+    ],
+    kortnummer: [""]
   }
 
   constructor(private http: HttpClient, private fb: FormBuilder,
-              private route: ActivatedRoute, private router: Router) {
+    private route: ActivatedRoute, private router: Router, private modalService: NgbModal) {
       this.skjema = fb.group(this.validering);
   }
 
@@ -49,6 +53,9 @@ export class Endre {
           this.skjema.patchValue({ id: kunde.id });
           this.skjema.patchValue({ fornavn: kunde.fornavn });
           this.skjema.patchValue({ etternavn: kunde.etternavn });
+          this.skjema.patchValue({ epost: kunde.epost });
+          this.skjema.patchValue({ mobilnummer: kunde.mobilnummer });
+          this.skjema.patchValue({ kortnummer: kunde.kortnummer });
         },
         error => console.log(error)
       );
@@ -59,10 +66,17 @@ export class Endre {
     endretKunde.id = this.skjema.value.id;
     endretKunde.fornavn = this.skjema.value.fornavn;
     endretKunde.etternavn = this.skjema.value.etternavn;
+    endretKunde.epost = this.skjema.value.epost;
+    endretKunde.mobilnummer = this.skjema.value.mobilnummer;
+    endretKunde.kortnummer = this.skjema.value.kortnummer;
+   
 
     this.http.put("api/kunde/", endretKunde)
       .subscribe(
         retur => {
+          this.endretKunde = endretKunde.fornavn + "  " + endretKunde.etternavn;
+          const endreModal = this.modalService.open(EndreModal)
+          endreModal.componentInstance.endreObjekt = this.endretKunde;
           this.router.navigate(['/liste']);
         },
         error => console.log(error)

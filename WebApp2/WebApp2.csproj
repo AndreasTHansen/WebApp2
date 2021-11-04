@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -30,17 +30,27 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\Billett.ts" />
+    <None Remove="ClientApp\src\app\endre\endreReise.ts" />
+    <None Remove="ClientApp\src\app\lagre\lagreReise.ts" />
+    <None Remove="ClientApp\src\app\modals\endreModal.ts" />
+    <None Remove="ClientApp\src\app\modals\sletteModal.ts" />
     <None Remove="ClientApp\src\app\Reise.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\lagre\" />
-    <Folder Include="ClientApp\src\app\endre\" />
+    <Content Include="ClientApp\src\app\login\login.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\meny\" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\Billett.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\endre\endreReise.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\lagre\lagreReise.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modals\endreModal.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\modals\sletteModal.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Reise.ts" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

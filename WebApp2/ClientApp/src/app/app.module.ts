@@ -2,31 +2,57 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { Lagre } from './lagre/lagre';
 import { Liste } from './liste/liste';
 import { Endre } from './endre/endre';
 import { Meny } from './meny/meny';
 import { BillettListe } from './liste/billettListe';
+import { BillettLagre } from './lagre/billettLagre';
+import { BillettEndre } from './endre/endreBillett';
+import { ReiseListe } from "./liste/reiseListe";
+import { LagreReise } from './lagre/lagreReise';
+import { EndreReise } from './endre/endreReise';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SletteModal } from "./modals/sletteModal";
+import { EndreModal } from "./modals/endreModal";
+
+import { Login } from "./login/login";
 
 @NgModule({
   declarations: [
     AppComponent,
-    Lagre,
+    Meny,
+
+    Lagre,  
     Liste,
     Endre,
-    Meny,
-    BillettListe
+    Login,
+
+    BillettListe,
+    BillettLagre,
+    BillettEndre,
+
+    ReiseListe,
+    LagreReise,
+    EndreReise,
+
+    SletteModal,
+    EndreModal
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SletteModal, EndreModal]
 })
 export class AppModule { }

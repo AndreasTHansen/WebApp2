@@ -25,13 +25,14 @@ namespace Kunde_SPA.Controllers
             _billettDb = billettDb;
             _log = log;
         }
+
         [HttpGet]
         public async Task<ActionResult> HentAlleReiser()
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            {
-                return Unauthorized();
-            }
+            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            //{
+            //    return Unauthorized();
+            //}
             List<Reise> reiseListe = await _billettDb.HentAlleReiser();
             return Ok(reiseListe);
         }

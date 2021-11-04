@@ -70,44 +70,47 @@ namespace Kunde_SPA.DAL
                 nyBillett.antallVoksne = innBillett.antallVoksne;
                 nyBillett.totalPris = innBillett.totalPris;
 
-                var nyKunde = new Kunder(); //Vi har ikke lagring av kunde derfor lages det en ny for hver billett i denne versjonen
+                var sjekkKunde = _billettDb.Kunder.Find(innBillett.kundeId);
+                if (sjekkKunde == null)
                 {
+                    var nyKunde = new Kunder();
                     nyKunde.fornavn = innBillett.fornavn;
                     nyKunde.epost = innBillett.epost;
                     nyKunde.etternavn = innBillett.etternavn;
                     nyKunde.id = innBillett.kundeId;
                     nyKunde.mobilnummer = innBillett.mobilnummer;
-                }
+                    nyBillett.kunde = nyKunde;
 
-                var sjekkKort = _billettDb.Kort.Find(innBillett.kortnummer); //Sammme kortnummer kan skje og vi har ikke auto increment så her må det sjekkes
-                if (sjekkKort == null)
-                {
-                    var nyttKort = new Kort();
-                    nyttKort.kortnummer = innBillett.kortnummer;
-                    nyttKort.utlopsdato = innBillett.utlopsdato;
-                    nyttKort.cvc = innBillett.cvc;
-
-                    nyKunde.kort = nyttKort;
+                    var sjekkKort = _billettDb.Kort.Find(innBillett.kortnummer);
+                    if (sjekkKort == null)
+                    {
+                        var nyttKort = new Kort();
+                        nyttKort.kortnummer = innBillett.kortnummer;
+                        nyttKort.utlopsdato = innBillett.utlopsdato;
+                        nyttKort.cvc = innBillett.cvc;
+                        nyKunde.kort = nyttKort;
+                    }
+                    else
+                    {
+                        nyKunde.kort.kortnummer = sjekkKort.kortnummer;
+                    }
                 }
                 else
                 {
-                    nyKunde.kort = sjekkKort;
+                    nyBillett.kunde.id = sjekkKunde.id;
                 }
-
-                nyBillett.kunde = nyKunde;
 
                 var sjekkReise = _billettDb.Reiser.Find(innBillett.reiseId);
                 if (sjekkReise == null)
                 {
 
                     var nyReise = new Reiser();
-                    nyReise.id = innBillett.reiseId;
                     nyReise.reiseFra = innBillett.reiseFra;
                     nyReise.reiseTil = innBillett.reiseTil;
                     nyReise.datoAvreise = innBillett.datoAvreise;
                     nyReise.datoAnkomst = innBillett.datoAnkomst;
-                    nyReise.tidspunktFra = innBillett.reiseTil;
-                    nyReise.tidspunktTil = innBillett.reiseTil;
+                    nyReise.tidspunktFra = innBillett.tidspunktFra;
+                    nyReise.tidspunktTil = innBillett.tidspunktTil;
                     nyReise.reisePris = innBillett.reisePris;
 
                     nyBillett.reise = nyReise;
@@ -115,7 +118,7 @@ namespace Kunde_SPA.DAL
 
                 else
                 {
-                    nyBillett.reise = sjekkReise;
+                    nyBillett.reise.id = sjekkReise.id;
                 }
 
                 _billettDb.Add(nyBillett);
@@ -150,7 +153,8 @@ namespace Kunde_SPA.DAL
                 Billetter enBillett = await _billettDb.Billetter.FindAsync(id);
                 var hentetBillett = new Billett()
                 {
-                    id = enBillett.kunde.id,
+                    id = enBillett.id,
+                    kundeId = enBillett.kunde.id,
                     fornavn = enBillett.kunde.fornavn,
                     etternavn = enBillett.kunde.etternavn,
                     epost = enBillett.kunde.epost,
@@ -192,14 +196,25 @@ namespace Kunde_SPA.DAL
                         kundeRad.etternavn = endreBillett.etternavn;
                         kundeRad.epost = endreBillett.epost;
                         kundeRad.mobilnummer = endreBillett.mobilnummer;
-                        kundeRad.kort.kortnummer = endreBillett.kortnummer;
-                        kundeRad.kort.cvc = endreBillett.cvc;
-                        kundeRad.kort.utlopsdato = endreBillett.utlopsdato;
 
-                        //Kortet blir endret i endreKunde, tror ikke det skal være nødvendig å endre kortet her
+                        var sjekkKort = _billettDb.Kort.Find(endreBillett.kortnummer);
+                        if (sjekkKort == null)
+                        {
+                            var kortRad = new Kort();
+                            kortRad.kortnummer = endreBillett.kortnummer;
+                            kortRad.cvc = endreBillett.cvc;
+                            kortRad.utlopsdato = endreBillett.utlopsdato;
+
+                            endreObjekt.kunde.kort = kortRad;
+                        }
+                        else
+                        {
+                            endreObjekt.kunde.kort.kortnummer = endreBillett.kortnummer;
+                        }
+
+                        //Kortet blir endret i endreKunde, skal ikke være nødvendig med å sjekke kort her
 
                         endreObjekt.kunde = kundeRad;
-
                     }
                     else
                     {
@@ -220,6 +235,7 @@ namespace Kunde_SPA.DAL
                         reiseRad.datoAvreise = endreBillett.datoAvreise;
                         reiseRad.tidspunktFra = endreBillett.tidspunktFra;
                         reiseRad.tidspunktTil = endreBillett.tidspunktTil;
+                        endreObjekt.reise = reiseRad;
                     }
                     else
                     {
@@ -262,12 +278,17 @@ namespace Kunde_SPA.DAL
             return salt;
         }
 
-
         public async Task<bool> LoggInn(Bruker bruker)
         {
             try
             {
                 Brukere funnetBruker = await _billettDb.Brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
+
+                //Brukernavn feil
+                if(funnetBruker == null)
+                {
+                    return false;
+                }
 
                 //sjekk passordet
                 byte[] hash = LagHash(bruker.Passord, funnetBruker.Salt);

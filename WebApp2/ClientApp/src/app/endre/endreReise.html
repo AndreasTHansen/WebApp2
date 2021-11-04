@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="col-md-4">
+    <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
+      <input class="form-control" formControlName="id" type="hidden" />
+      <div class="form-group">
+        <label>Reise Fra</label>
+        <input class="form-control" formControlName="reiseFra" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.reiseFra.valid || (skjema.controls.reiseFra.pristine && !submitted)">
+          Reisen må være en gydlig destinasjon
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Reise Til</label>
+        <input class="form-control" formControlName="reiseTil" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.reiseTil.valid || (skjema.controls.reiseTil.pristine && !submitted)">
+          Reisen må være en gyldig destinasjon
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Dato avreise</label>
+        <input class="form-control" formControlName="datoAvreise" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.datoAvreise.valid || (skjema.controls.datoAvreise.pristine && !submitted)">
+          Må være en gyldig dato
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Tidspunkt avreise</label>
+        <input class="form-control" formControlName="tidspunktFra" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.tidspunktFra.valid || (skjema.controls.tidspunktFra.pristine && !submitted)">
+          Må være et gyldig tidspunkt
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Dato ankomst</label>
+        <input class="form-control" formControlName="datoAnkomst" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.datoAnkomst.valid || (skjema.controls.datoAnkomst.pristine && !submitted)">
+          Må være en gyldig dato
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Tidspunkt ankomst</label>
+        <input class="form-control" formControlName="tidspunktTil" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.tidspunktTil.valid || (skjema.controls.tidspunktTil.pristine && !submitted)">
+          Må være et gyldig tidspunkt
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Pris</label>
+        <input class="form-control" formControlName="pris" type="number" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.pris.valid || (skjema.controls.pris.pristine && !submitted)">
+          Må være en gyldig pris
+        </p>
+      </div>
+
+
+      <div class="form-group">
+        <button type="submit" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+        <button class="btn btn-default" routerLink="/lagreListe">Tilbake</button>
+      </div>
+    </form>
+  </div>
+</div>

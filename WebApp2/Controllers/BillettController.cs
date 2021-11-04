@@ -19,8 +19,6 @@ namespace Kunde_SPA.Controllers
 
         private ILogger<BillettController> _log;
 
-        private const string _loggetInn = "loggetInn";
-        private const string _ikkeLoggetInn = "";
 
         public BillettController(IBillettRepository billettDb, ILogger<BillettController> log)
         {
@@ -77,7 +75,7 @@ namespace Kunde_SPA.Controllers
                     _log.LogInformation("Billetten kunne ikke bli endret");
                     return NotFound();
                 }
-                return Ok("Billetten ble endret");
+                return Ok();
             }
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest();
@@ -93,25 +91,6 @@ namespace Kunde_SPA.Controllers
                 return NotFound();
             }
             return Ok(hentetBillett);
-        }
-
-        //Hentet fra fagstoff
-        public async Task<ActionResult> LoggInn(Bruker bruker)
-        {
-            if (ModelState.IsValid)
-            {
-                bool returnOK = await _billettDb.LoggInn(bruker);
-                if (!returnOK)
-                {
-                    _log.LogInformation("Innloggingen feilet for bruker");
-                    HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
-                    return Ok(false);
-                }
-                HttpContext.Session.SetString(_loggetInn, _loggetInn);
-                return Ok(true);
-            }
-            _log.LogInformation("Feil i inputvalidering");
-            return BadRequest("Feil i inputvalidering på server");
         }
     }
 }

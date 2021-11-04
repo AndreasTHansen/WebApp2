@@ -78,12 +78,14 @@ namespace Kunde_SPA.DAL
             {
                 var endreObjekt = await _billettDb.Reiser.FindAsync(endreReise.id);
                 endreObjekt.reiseFra = endreReise.reiseFra;
-                endreObjekt.reiseTil = endreReise.reiseFra;
+                endreObjekt.reiseTil = endreReise.reiseTil;
                 endreObjekt.tidspunktFra = endreReise.tidspunktFra;
                 endreObjekt.tidspunktTil = endreReise.tidspunktTil;
                 endreObjekt.datoAnkomst = endreReise.datoAnkomst;
                 endreObjekt.datoAvreise = endreReise.datoAvreise;
                 endreObjekt.reisePris = endreReise.reisePris;
+
+                await _billettDb.SaveChangesAsync();
             }
             catch (Exception e)
             {
