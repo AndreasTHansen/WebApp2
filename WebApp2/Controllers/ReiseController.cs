@@ -63,14 +63,19 @@ namespace Kunde_SPA.Controllers
                 return Unauthorized("Ikke logget inn");
             }
 
-            bool lagreOk = await _billettDb.LagreReise(innReise);
-            if (!lagreOk)
+            if (ModelState.IsValid)
             {
-                _log.LogInformation("Reisen kunne ikke lagres!");
-                return BadRequest(false);
+                bool lagreOk = await _billettDb.LagreReise(innReise);
+                if (!lagreOk)
+                {
+                    _log.LogInformation("Reisen kunne ikke lagres!");
+                    return BadRequest(false);
+                }
+                _log.LogInformation("Reise har blitt lagret");
+                return Ok(true);
             }
-            _log.LogInformation("Reise har blitt lagret"); 
-            return Ok(true);
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest(false);
         }
 
         [HttpPut]
