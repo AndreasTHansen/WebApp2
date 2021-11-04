@@ -12,13 +12,6 @@ export class MenyService {
 
   toggle() {
     this.visible = !this.visible;
-    this.isExpanded = !this.isExpanded;
-  }
-
-  isExpanded = false;
-
-  collapse() {
-    this.isExpanded = false;
   }
 
 }

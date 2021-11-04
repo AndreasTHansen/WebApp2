@@ -1,4 +1,7 @@
 
+<h1>Innlogging for Color Line Admin</h1>
+<br />
+
 <form [formGroup]="loginForm" (ngSubmit)="vedSubmit()">
   <div class="form-group">
     <label>Username</label>
@@ -6,7 +9,7 @@
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input class="form-control" formControlName="password" />
+    <input type="password" class="form-control" formControlName="password" />
   </div>
   <div class="form-group">
     <button type="submit" class="btn btn-primary">Logg inn</button>
