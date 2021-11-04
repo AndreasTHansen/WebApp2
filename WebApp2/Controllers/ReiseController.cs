@@ -29,16 +29,22 @@ namespace Kunde_SPA.Controllers
         [HttpGet]
         public async Task<ActionResult> HentAlleReiser()
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            //{
-            //    return Unauthorized();
-            //}
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             List<Reise> reiseListe = await _billettDb.HentAlleReiser();
             return Ok(reiseListe);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult> HentEnReise(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             Reise hentetReise = await _billettDb.HentEnReise(id);
 
             if (hentetReise == null)
@@ -51,6 +57,11 @@ namespace Kunde_SPA.Controllers
         [HttpPost]
         public async Task<ActionResult> LagreReise(Reise innReise)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             bool lagreOk = await _billettDb.LagreReise(innReise);
             if (!lagreOk)
             {
@@ -63,6 +74,11 @@ namespace Kunde_SPA.Controllers
         [HttpPut]
         public async Task<ActionResult> EndreReise(Reise endreReise)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             if (ModelState.IsValid)
             {
                 bool endreOk = await _billettDb.EndreReise(endreReise);
@@ -79,6 +95,11 @@ namespace Kunde_SPA.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> SlettReise(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             bool returOK = await _billettDb.SlettReise(id);
             if (!returOK)
             {
