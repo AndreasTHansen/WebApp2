@@ -36,10 +36,6 @@ namespace KundeApp2.Controllers
             }
 
             List<Kunde> alleKunder = await _billettDb.HentAlleKunder();
-            if (alleKunder == null)
-            {
-                return NotFound(false);
-            }
             return Ok(alleKunder);
         }
         [HttpGet("{id}")]
