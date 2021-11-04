@@ -46,6 +46,8 @@ namespace KundeApp2.DAL
                 var kunde1 = new Kunder { fornavn = "Anders", etternavn = "Ottersland", mobilnummer = "41251290", epost = "anderh@gmail.com", kort = kort1 };
                 var kunde2 = new Kunder { fornavn = "Andreas", etternavn = "Hansen", mobilnummer = "41251291", epost = "andreas@gmail.com", kort = kort1 };
                 var kunde3 = new Kunder { fornavn = "Hannah", etternavn = "Nilsen", mobilnummer = "41251292", epost = "Hanna@gmail.com", kort = kort1 };
+                var kunde4 = new Kunder { fornavn = "Helene", etternavn = "Åsen", mobilnummer = "41251294", epost = "Helene@gmail.com", kort = kort1 };
+                var kunde5 = new Kunder { fornavn = "Alex", etternavn = "alexander", mobilnummer = "41251295", epost = "Alexander@gmail.com", kort = kort1 };
 
 
                 var billett1 = new Billetter { antallBarn = 0, antallVoksne = 1, reise = reise5, totalPris = 1000, kunde = kunde1 };
@@ -75,6 +77,8 @@ namespace KundeApp2.DAL
                 context.Kunder.Add(kunde1);
                 context.Kunder.Add(kunde2);
                 context.Kunder.Add(kunde3);
+                context.Kunder.Add(kunde4);
+                context.Kunder.Add(kunde5);
 
                 context.Billetter.Add(billett1);
                 context.Billetter.Add(billett2);
