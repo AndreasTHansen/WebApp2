@@ -76,10 +76,10 @@ namespace Kunde_SPA.Controllers
             if (!returOK)
             {
                 _log.LogInformation("Billetten ble ikke slettet");
-                return NotFound();
+                return NotFound("Billetten ble ikke slettet");
             }
             _log.LogInformation("Billetten ble slettet");
-            return Ok();
+            return Ok("Billetten ble slettet");
         }
         [HttpPut]
         public async Task<ActionResult> EndreBillett(Billett endreBillett)

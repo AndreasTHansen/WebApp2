@@ -56,7 +56,7 @@ export class BillettListe {
           .subscribe(retur => {
             this.hentAlleBilletter();
           },
-            error => alert("Denne reisen kan ikke slettes fordi den finnes i en billett")
+            error => console.log(error)
           );
       }
       this.router.navigate(['/billettListe']);
