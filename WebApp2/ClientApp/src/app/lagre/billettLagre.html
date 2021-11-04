@@ -3,121 +3,126 @@
     <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
       <div class="form-group">
         <h1>Billett:</h1>
-        <h2>Kunde:</h2>
-      </div>
-      <div class="form-group">
-        <label>Fornavn</label>
-        <input class="form-control" formControlName="etternavn" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.fornavn.valid || (skjema.controls.fornavn.pristine && !submitted)">
-          Skriv et gyldig fornavn
+        <label>Antall Voksne</label>
+        <input class="form-control" formControlName="antallVoksne" type="number" />
+        <p class="alert alert-warning" [hidden]="skjema.controls.antallVoksne.valid || (skjema.controls.antallVoksne.pristine && !submitted)">
+          Skriv et gyldig antall
         </p>
       </div>
       <div class="form-group">
-        <label>Etternavn</label>
-        <input class="form-control" formControlName="etternavn" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.etternavn.valid || (skjema.controls.etternavn.pristine && !submitted)">
-          Skriv et gyldig etternavn
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Mobilnummer</label>
-        <input class="form-control" formControlName="mobilnummer" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.mobilnummer.valid || (skjema.controls.mobilnummer.pristine && !submitted)">
-          Skriv et gyldig mobilnummer
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Epost</label>
-        <input class="form-control" formControlName="epost" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid || (skjema.controls.epost.pristine && !submitted)">
-          Skriv en gyldig epost-adresse
-        </p>
-      </div>
-      <div class="form-group">
-        <h2>Kort</h2>
-        <label>Kortnummer</label>
-        <input class="form-control" formControlName="kortnummer" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.kortnummer.valid || (skjema.controls.kortnummer.pristine && !submitted)">
-          Kortnummer må være med 16 siffer
-        </p>
-      </div>
-      <div class="form-group">
-        <label>utløpsdato</label>
-        <input class="form-control" formControlName="dato" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.dato.valid || (skjema.controls.dato.pristine && !submitted)">
-          Utløpsdato må skrives med formatet dd/mm/yyyy
-        </p>
-      </div>
-      <div class="form-group">
-        <label>cvc</label>
-        <input class="form-control" formControlName="cvc" type="number" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.cvc.valid || (skjema.controls.cvc.pristine && !submitted)">
-          Skriv en gyldig cvc
-        </p>
-
-      </div>
-      <div class="form-group">
-        <h2>Reise</h2>
-        <label>Reise fra:</label>
-        <input class="form-control" formControlName="reise" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.reise.valid || (skjema.controls.reise.pristine && !submitted)">
-          Skriv en gyldig destinasjon
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Reise til:</label>
-        <input class="form-control" formControlName="reise" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.reise.valid || (skjema.controls.reise.pristine && !submitted)">
-          Skriv en gyldig destinasjon
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Dato avreise:</label>
-        <input class="form-control" formControlName="dato" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.dato.valid || (skjema.controls.dato.pristine && !submitted)">
-          Skriv inn en gyldig dato
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Dato avreise:</label>
-        <input class="form-control" formControlName="dato" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.dato.valid || (skjema.controls.dato.pristine && !submitted)">
-          Skriv inn en gyldig dato
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Tidspunkt avreise:</label>
-        <input class="form-control" formControlName="tidspunkt" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.tidspunkt.valid || (skjema.controls.tidspunkt.pristine && !submitted)">
-          Skriv inn en gyldig dato
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Tidspunkt avreise:</label>
-        <input class="form-control" formControlName="tidspunkt" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.tidspunkt.valid || (skjema.controls.tidspunkt.pristine && !submitted)">
-          Skriv inn et gyldig tidspunkt
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Tidspunkt ankomst:</label>
-        <input class="form-control" formControlName="tidspunkt" />
-        <p class="alert alert-warning" [hidden]="skjema.controls.tidspunkt.valid || (skjema.controls.tidspunkt.pristine && !submitted)">
-          Skriv inn et gyldig tidspunkt
-        </p>
-      </div>
-      <div class="form-group">
-        <label>Reisen sin pris per person:</label>
-        <input class="form-control" formControlName="tidspunkt" type="number"/>
-        <p class="alert alert-warning" [hidden]="skjema.controls.pris.valid || (skjema.controls.pris.pristine && !submitted)">
-          Skriv inn et gyldig tidspunkt
-        </p>
-      </div>
-      <div class="form-group">
-        <button type="submit" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
-        <button class="btn btn-default" routerLink="/liste">Tilbake</button>
-      </div>
-    </form>
+      <label>Antall Barn</label>
+      <input class="form-control" formControlName="antallBarn" type="number" />
+      <p class="alert alert-warning" [hidden]="skjema.controls.antallBarn.valid || (skjema.controls.antallBarn.pristine && !submitted)">
+        Skriv et gyldig antall
+      </p>
   </div>
+  <div class="form-group">
+    <h2>Kunde:</h2>
+    <label>Fornavn</label>
+    <input class="form-control" formControlName="fornavn" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.fornavn.valid || (skjema.controls.fornavn.pristine && !submitted)">
+      Skriv et gyldig fornavn
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Etternavn</label>
+    <input class="form-control" formControlName="etternavn" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.etternavn.valid || (skjema.controls.etternavn.pristine && !submitted)">
+      Skriv et gyldig etternavn
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Mobilnummer</label>
+    <input class="form-control" formControlName="mobilnummer" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.mobilnummer.valid || (skjema.controls.mobilnummer.pristine && !submitted)">
+      Skriv et gyldig mobilnummer
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Epost</label>
+    <input class="form-control" formControlName="epost" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid || (skjema.controls.epost.pristine && !submitted)">
+      Skriv en gyldig epost-adresse
+    </p>
+  </div>
+  <div class="form-group">
+    <h2>Kort</h2>
+    <label>Kortnummer</label>
+    <input class="form-control" formControlName="kortnummer" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.kortnummer.valid || (skjema.controls.kortnummer.pristine && !submitted)">
+      Kortnummer må være med 16 siffer
+    </p>
+  </div>
+  <div class="form-group">
+    <label>utløpsdato</label>
+    <input class="form-control" formControlName="utlopsdato" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.utlopsdato.valid || (skjema.controls.utlopsdato.pristine && !submitted)">
+      Utløpsdato må skrives med formatet dd/mm/yyyy
+    </p>
+  </div>
+  <div class="form-group">
+    <label>cvc</label>
+    <input class="form-control" formControlName="cvc" type="number" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.cvc.valid || (skjema.controls.cvc.pristine && !submitted)">
+      Skriv en gyldig cvc
+    </p>
+
+  </div>
+  <div class="form-group">
+    <h2>Reise</h2>
+    <label>Reise fra:</label>
+    <input class="form-control" formControlName="reiseFra" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.reiseFra.valid || (skjema.controls.reiseFra.pristine && !submitted)">
+      Skriv en gyldig destinasjon
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Reise til:</label>
+    <input class="form-control" formControlName="reiseTil" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.reiseTil.valid || (skjema.controls.reiseTil.pristine && !submitted)">
+      Skriv en gyldig destinasjon
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Dato avreise:</label>
+    <input class="form-control" formControlName="datoAvreise" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.datoAvreise.valid || (skjema.controls.datoAvreise.pristine && !submitted)">
+      Skriv inn en gyldig dato
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Dato ankomst:</label>
+    <input class="form-control" formControlName="datoAnkomst" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.datoAnkomst.valid || (skjema.controls.datoAnkomst.pristine && !submitted)">
+      Skriv inn en gyldig dato
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Tidspunkt avreise:</label>
+    <input class="form-control" formControlName="tidspunktFra" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.tidspunktFra.valid || (skjema.controls.tidspunktFra.pristine && !submitted)">
+      Skriv inn en gyldig dato
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Tidspunkt ankomst:</label>
+    <input class="form-control" formControlName="tidspunktTil" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.tidspunktTil.valid || (skjema.controls.tidspunktTil.pristine && !submitted)">
+      Skriv inn et gyldig tidspunkt
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Reisen sin pris per person:</label>
+    <input class="form-control" formControlName="reisePris" type="number" />
+    <p class="alert alert-warning" [hidden]="skjema.controls.reisePris.valid || (skjema.controls.reisePris.pristine && !submitted)">
+      Skriv inn et gyldig tidspunkt
+    </p>
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="!skjema.valid" class="btn btn-primary">Registrer</button>
+    <button class="btn btn-default" routerLink="/billettListe">Tilbake</button>
+  </div>
+  </form>
+</div>
 </div>
 
