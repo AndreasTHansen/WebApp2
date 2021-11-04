@@ -378,6 +378,43 @@ namespace WebAppTest
         //Kunde controller
 
         [Fact]
+        public async Task LagreKundeLoggetInnOK()
+        {
+            mockRepK.Setup(k => k.LagreKunde(It.IsAny<Kunde>())).ReturnsAsync(true);
+
+            var billettController = new KundeController(mockRepK.Object, mockLogK.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            billettController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            // Act
+            var resultat = await billettController.LagreKunde(It.IsAny<Kunde>()) as OkObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal(true, resultat.Value);
+        }
+        [Fact]
+        public async Task LagreKundeLoggetFeilOK()
+        {
+            mockRepK.Setup(k => k.LagreKunde(It.IsAny<Kunde>())).ReturnsAsync(false);
+
+            var billettController = new KundeController(mockRepK.Object, mockLogK.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            billettController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            // Act
+            var resultat = await billettController.LagreKunde(It.IsAny<Kunde>()) as OkObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal(false, resultat.Value);
+        }
+
+        [Fact]
         public async Task EndreKundeLoggetInnOK()
         {
             mockRepK.Setup(k => k.EndreKunde(It.IsAny<Kunde>())).ReturnsAsync(true);
