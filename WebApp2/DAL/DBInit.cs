@@ -41,15 +41,6 @@ namespace KundeApp2.DAL
                 var reise18 = new Reiser { reiseFra = "København", reiseTil = "Oslo", tidspunktFra = "20:00", tidspunktTil = "10:00", datoAvreise = "26/11/2021", datoAnkomst = "27/11/2021", reisePris = 1000.0 };
                 var reise19 = new Reiser { reiseFra = "København", reiseTil = "Kiel", tidspunktFra = "22:00", tidspunktTil = "10:00", datoAvreise = "28/11/2021", datoAnkomst = "29/11/2021", reisePris = 700.0 };
 
-                /* Template for alle reisene
-                var reise = new Reiser { reiseFra = "Oslo", reiseTil = "Kiel", tidspunktFra = "", tidspunktTil = "", datoAvreise = "", datoAnkomst = "", reisePris = 3000.0 };
-                var reise = new Reiser { reiseFra = "Oslo", reiseTil = "København", tidspunktFra = "", tidspunktTil = "", datoAvreise = "", datoAnkomst = "", reisePris = 1000.0 };
-                var reise = new Reiser { reiseFra = "Kiel", reiseTil = "Oslo", tidspunktFra = "", tidspunktTil = "", datoAvreise = "", datoAnkomst = "", reisePris = 3000.0 };
-                var reise = new Reiser { reiseFra = "Kiel", reiseTil = "København", tidspunktFra = "", tidspunktTil = "", datoAvreise = "", datoAnkomst = "", reisePris = 700.0 };
-                var reise = new Reiser { reiseFra = "København", reiseTil = "Oslo", tidspunktFra = "", tidspunktTil = "", datoAvreise = "", datoAnkomst = "", reisePris = 1000.0 };
-                var reise = new Reiser { reiseFra = "København", reiseTil = "Kiel", tidspunktFra = "", tidspunktTil = "", datoAvreise = "", datoAnkomst = "", reisePris = 700.0 };
-                */
-
 
                 var kort1 = new Kort { kortnummer = "4567890", cvc = 123, utlopsdato = "03/04/2022" };
                 var kunde1 = new Kunder { fornavn = "Anders", etternavn = "Ottersland", mobilnummer = "41251290", epost = "anderh@gmail.com", kort = kort1 };
@@ -58,7 +49,8 @@ namespace KundeApp2.DAL
 
 
                 var billett1 = new Billetter { antallBarn = 0, antallVoksne = 1, reise = reise5, totalPris = 1000, kunde = kunde1 };
-
+                var billett2 = new Billetter { antallBarn = 2, antallVoksne = 2, reise = reise7, totalPris = 5000, kunde = kunde3 };
+                var billett3 = new Billetter { antallBarn = 1, antallVoksne = 1, reise = reise7, totalPris = 1000, kunde = kunde2 };
 
                 context.Reiser.Add(reise1);
                 context.Reiser.Add(reise2);
@@ -85,6 +77,8 @@ namespace KundeApp2.DAL
                 context.Kunder.Add(kunde3);
 
                 context.Billetter.Add(billett1);
+                context.Billetter.Add(billett2);
+                context.Billetter.Add(billett3);
 
 
                 //Hentet fra fagstoff
