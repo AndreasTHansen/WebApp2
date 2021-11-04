@@ -9,19 +9,21 @@ import { BillettEndre } from './endre/endreBillett';
 import { ReiseListe } from "./liste/reiseListe";
 import { LagreReise } from './lagre/lagreReise';
 import { EndreReise } from './endre/endreReise';
+import { Login } from './login/login';
 
 const appRoots: Routes = [
   { path: 'lagre', component: Lagre },
   { path: 'liste', component: Liste },
   { path: 'endre/:id', component: Endre },
-  { path: '', redirectTo: '/liste', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'billettListe', component: BillettListe },
   { path: 'billettLagre', component: BillettLagre },
-  { path: 'endreBillett/:id', component: BillettEndre},
+  { path: 'endreBillett/:id', component: BillettEndre },
   { path: 'reiseListe', component: ReiseListe },
   { path: 'lagreReise', component: LagreReise },
   { path: 'endreReise/:id', component: EndreReise },
-  { path: '', redirectTo: '/liste', pathMatch: 'full' }
+  { path: 'login', component: Login }
+
 ]
 
 @NgModule({

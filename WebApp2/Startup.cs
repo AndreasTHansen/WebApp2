@@ -32,12 +32,21 @@ namespace Kunde_SPA
             services.AddScoped<IKundeRepository, KundeRepository>();
             services.AddScoped<IBillettRepository, BillettRepository>();
             services.AddScoped<IReiseRepository, ReiseRepository>();
-            
-          // In production, the Angular files will be served from this directory
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".AdventureWorks.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(1800); // 30 minutter
+                options.Cookie.IsEssential = true;
+            });
+            services.AddDistributedMemoryCache();   
+
+            // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +73,8 @@ namespace Kunde_SPA
             }
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

@@ -20,6 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SletteModal } from "./modals/sletteModal";
 import { EndreModal } from "./modals/endreModal";
 
+import { Login } from "./login/login";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { EndreModal } from "./modals/endreModal";
     Lagre,  
     Liste,
     Endre,
+    Login,
 
     BillettListe,
     BillettLagre,
