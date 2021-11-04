@@ -5,3 +5,6 @@ Webapplikasjonen vår har funksjonalitetene: sletting, lagring og endring av kun
 
 Vi valgte å ikke inkludere lagring av billett i admin-siden fordi vi antar at lagring av billett skjer via bruker-siden.
 Det var et bevisst valg å ikke inkludere endring av kortinnformasjon, siden dette er konfidensiell innformasjon. 
+
+Brukernavnet for å komme inn er: Admin
+Passordet er: Test11
