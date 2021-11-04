@@ -47,7 +47,7 @@ namespace Kunde_SPA
             {
                 app.UseDeveloperExceptionPage();
                 loggerFactory.AddFile("Logs/log.txt");
-                DbInit.Initialize(app); // denne m? fjernes dersom vi vil beholde dataene i databasen og ikke initialisere 
+                DbInit.Initialize(app); // Har denne her for nå, fordi ønsker noen prøveverdier. Denne vil da fjernes hvis man ikke vil resette databasen hver gang programmet kjøres
             }
             else
             {
