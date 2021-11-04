@@ -20,6 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SletteModal } from "./modals/sletteModal";
 import { FeilModal } from "./modals/feilModal";
 
+import { Login } from "./login/login";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { FeilModal } from "./modals/feilModal";
     Lagre,  
     Liste,
     Endre,
+    Login,
 
     BillettListe,
     BillettLagre,
