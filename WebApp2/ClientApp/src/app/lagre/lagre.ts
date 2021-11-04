@@ -28,7 +28,7 @@ export class Lagre {
       null, Validators.compose([Validators.required, Validators.pattern("[0-9]{16}")])
     ],
     utlopsdato: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9 /]{10,12}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}")])
     ],
     cvc: [
       null, Validators.compose([Validators.required, Validators.pattern("[0-9]{3}")])

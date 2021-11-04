@@ -66,23 +66,23 @@ export class BillettLagre {
       null, Validators.compose([Validators.required, Validators.pattern("[0-9]{16}")])
     ],
     utlopsdato: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}")])
     ],
     cvc: [
       null, Validators.compose([Validators.required, Validators.pattern("[0-9]{3}")])
     ],
     datoAvreise: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}")])
     ],
     datoAnkomst: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}")])
     ],
  
     tidspunktFra: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9:/]{4,6}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[:][0-9]{2}$")])
     ],
     tidspunktTil: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9:/]{4,6}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[:][0-9]{2}$")])
     ],
     reiseFra: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
@@ -91,7 +91,7 @@ export class BillettLagre {
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
     ],
     reisePris: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{1,6}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{1,6}")])
     ],
     antallBarn: [
       null, Validators.compose([Validators.required, Validators.pattern("[0-9]{0,1}")])
