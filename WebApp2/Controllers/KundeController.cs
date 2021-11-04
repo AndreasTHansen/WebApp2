@@ -32,13 +32,13 @@ namespace KundeApp2.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             List<Kunde> alleKunder = await _billettDb.HentAlleKunder();
             if (alleKunder == null)
             {
-                return NotFound();
+                return NotFound(false);
             }
             return Ok(alleKunder);
         }
@@ -47,7 +47,7 @@ namespace KundeApp2.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             Kunde hentetKunde = await _billettDb.HentEnKunde(id);
@@ -55,7 +55,7 @@ namespace KundeApp2.Controllers
             if (hentetKunde == null)
             {
                 _log.LogInformation("Fant ikke reisen i databasen");
-                return NotFound();
+                return NotFound(false);
             }
             return Ok(hentetKunde);
         }
@@ -73,13 +73,13 @@ namespace KundeApp2.Controllers
                 if (!endreOK)
                 {
                     _log.LogInformation("Det skjedde noe feil under endringen");
-                    return NotFound();
+                    return NotFound(false);
                 }
                 _log.LogInformation("Kunde har blitt endret");
-                return Ok();
+                return Ok(true);
             }
             _log.LogInformation("Feil i inputvalidering");
-            return BadRequest();
+            return BadRequest(false);
         }
         [HttpPost]
         public async Task<ActionResult> LagreKunde(Kunde innKunde)
@@ -88,10 +88,10 @@ namespace KundeApp2.Controllers
             if (!lagreOK)
             {
                 _log.LogInformation("Det skjedde noe feil under lagringen");
-                return BadRequest();
+                return BadRequest(false);
             }
             _log.LogInformation("Kunde har blitt lagret");
-            return Ok();
+            return Ok(true);
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult> SlettKunde(int id)
@@ -100,10 +100,10 @@ namespace KundeApp2.Controllers
             if (!slettOk)
             {
                 _log.LogInformation("Kunden ble ikke slettet");
-                return NotFound();
+                return NotFound(false);
             }
             _log.LogInformation("Kunde har blitt slettet");
-            return Ok();
+            return Ok(true);
         }
     }
 }

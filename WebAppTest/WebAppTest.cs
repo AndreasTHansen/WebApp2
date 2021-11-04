@@ -249,7 +249,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("Billett slettet", resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
         [Fact]
@@ -268,7 +268,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
-            Assert.Equal("Billetten ble ikke slettet", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -307,7 +307,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("Billetten ble endret", resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
         [Fact]
@@ -326,7 +326,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
-            Assert.Equal("Billetten ble ikke endret", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -348,7 +348,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Feil i inputvalidering på server", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -420,7 +420,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
-            Assert.Equal("Fant ikke reisen i databasen", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
