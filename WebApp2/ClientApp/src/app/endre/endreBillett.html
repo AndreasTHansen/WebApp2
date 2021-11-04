@@ -2,6 +2,8 @@
     <div class="col-md-4">
       <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
         <input class="form-control" formControlName="id" type="hidden" />
+        <input class="form-control" formControlName="kundeId" type="hidden" />
+        <input class="form-control" formControlName="reiseId" type="hidden" />
         <input class="form-control" formControlName="kortnummer" type="hidden" />
         <h2>Billett</h2>
         <div class="form-group">
@@ -20,7 +22,7 @@
         </div>
         <div class="form-group">
           <label>Total pris</label>
-          <input class="form-control" formControlName="totalPris" />
+          <input class="form-control" formControlName="totalPris" type="number" />
           <p class="alert alert-warning" [hidden]="skjema.controls.totalPris.valid || (skjema.controls.totalPris.pristine && !submitted)">
             E-post er obligatorisk
           </p>

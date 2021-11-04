@@ -75,7 +75,7 @@ namespace Kunde_SPA.Controllers
                     _log.LogInformation("Billetten kunne ikke bli endret");
                     return NotFound();
                 }
-                return Ok("Billetten ble endret");
+                return Ok();
             }
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest();

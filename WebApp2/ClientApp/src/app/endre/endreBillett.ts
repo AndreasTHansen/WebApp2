@@ -15,14 +15,16 @@ export class BillettEndre {
   validering = {
     id: [""],
     kortnummer: [""],
+    kundeId: [""],
+    reiseId: [""],
     antallBarn: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ -]{2,30}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{0,9}")])
     ],
     antallVoksne: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[1-9]{1,9}")])
     ],
     totalPris: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{8,12}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{1,6}")])
     ]
     
   }
@@ -48,11 +50,12 @@ export class BillettEndre {
         billett => {
           this.billetten = billett;
           this.skjema.patchValue({ id: billett.id });
+          this.skjema.patchValue({ kundeId: billett.kundeId });
+          this.skjema.patchValue({ kortnummer: billett.kortnummer });
+          this.skjema.patchValue({ reiseId: billett.reiseId });
           this.skjema.patchValue({ antallBarn: billett.antallBarn });
           this.skjema.patchValue({ antallVoksne: billett.antallVoksne });
           this.skjema.patchValue({ totalPris: billett.totalPris });
-          this.skjema.patchValue({ epost: billett.epost });
-          this.skjema.patchValue({ mobilnummer: billett.mobilnummer });
         },
         error => console.log(error)
       );
@@ -61,8 +64,13 @@ export class BillettEndre {
   endreBillett() {
     const endretBillett = new Billett();
     endretBillett.id = this.skjema.value.id;
-    endretBillett.fornavn = this.skjema.value.fornavn;
-    endretBillett.etternavn = this.skjema.value.etternavn;
+    endretBillett.kundeId = this.skjema.value.kundeId;
+    endretBillett.kortnummer = this.skjema.value.kortnummer;
+    endretBillett.reiseId = this.skjema.value.reiseId;
+    endretBillett.antallBarn = this.skjema.value.antallBarn;
+    endretBillett.antallVoksne = this.skjema.value.antallVoksne;
+    endretBillett.totalPris = this.skjema.value.totalPris; 
+
 
     this.http.put("api/billett/", endretBillett)
       .subscribe(
