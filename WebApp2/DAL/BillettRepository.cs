@@ -105,7 +105,6 @@ namespace Kunde_SPA.DAL
                 {
 
                     var nyReise = new Reiser();
-                    nyReise.id = innBillett.reiseId;
                     nyReise.reiseFra = innBillett.reiseFra;
                     nyReise.reiseTil = innBillett.reiseTil;
                     nyReise.datoAvreise = innBillett.datoAvreise;

@@ -51,6 +51,9 @@ export class BillettLagre {
 
   validering = {
     id: [""],
+    fornavn: [
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,30}")])
+    ],
     etternavn: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
     ],
@@ -59,7 +62,25 @@ export class BillettLagre {
     ],
     epost: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
-    ]
+    ],
+    kortnummer: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{16}")])
+    ],
+    dato: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
+    ],
+    cvc: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{3}")])
+    ],
+    tidspunkt: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9:/]{4,6}")])
+    ],
+    reise: [
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
+    ],
+    pris: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{1,6}")])
+    ],
   }
 
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {

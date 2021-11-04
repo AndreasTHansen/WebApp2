@@ -29,7 +29,7 @@ export class EndreReise {
       null, Validators.compose([Validators.required, Validators.pattern("[0-9:]{2,20}")])
     ],
     datoAvreise: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9./\:]{2,20}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
     ],
     pris: [
       null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2,8}")])
