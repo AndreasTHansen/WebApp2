@@ -6,17 +6,20 @@ import { Kunde } from "../Kunde";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SletteModal } from "../modals/sletteModal";
 
+import { MenyService } from '../meny/meny.service';
+
 @Component({
   templateUrl: "liste.html"
 })
-export class Liste {
+export class Liste implements OnInit{
   alleKunder: Array<Kunde>;
   laster: boolean;
   kundeTilSletting: string;
 
-  constructor(private http: HttpClient, private router: Router, private modalService: NgbModal) {}
+  constructor(public nav: MenyService, private http: HttpClient, private router: Router, private modalService: NgbModal) {}
 
   ngOnInit() {
+    this.nav.show();
     this.laster = true;
     this.hentAlleKunder();
   }

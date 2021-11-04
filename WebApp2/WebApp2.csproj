@@ -42,10 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\meny\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\Billett.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\endre\endreReise.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\lagre\lagreReise.ts" />

@@ -20,6 +20,7 @@ import { SletteModal } from "./modals/sletteModal";
 import { EndreModal } from "./modals/endreModal";
 
 import { Login } from "./login/login";
+import { MenyService } from './meny/meny.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { Login } from "./login/login";
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [MenyService],
   bootstrap: [AppComponent],
   entryComponents: [SletteModal, EndreModal]
 })

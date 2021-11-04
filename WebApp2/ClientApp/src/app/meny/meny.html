@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav *ngIf="nav.visible" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
             <a class="navbar-brand" routerLink="/">Color Line Admin</a>
             <button class="navbar-toggler"
@@ -13,17 +13,20 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
                  [ngClass]="{ show: isExpanded }">
-                <ul class="navbar-nav flex-grow">
-                     <li class="nav-item">
-                        <a class="nav-link text-dark" routerLink="/liste">Kunder</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" routerLink="/billettListe">Billetter</a>
-                    </li>
-                  <li class="nav-item">
-                        <a class="nav-link text-dark" routerLink="/reiseListe">Reiser</a>
-                    </li>
-                </ul>
+              <ul class="navbar-nav flex-grow">
+                <li class="nav-item">
+                  <a class="nav-link text-dark" routerLink="/liste">Kunder</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" routerLink="/billettListe">Billetter</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" routerLink="/reiseListe">Reiser</a>
+                </li>
+                <li class="nav-item">
+                  <button class="btn btn-primary" (click)="loggUt()" routerLink="/login">Logg Ut</button>
+                </li>
+              </ul>
             </div>
         </div>
     </nav>
