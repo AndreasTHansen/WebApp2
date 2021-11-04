@@ -86,7 +86,7 @@ export class EndreReise {
 
     this.http.put("api/reise/", endretReise)
       .subscribe(retur => {
-        this.endretReise = endretReise.reiseFra + " - " + endretReise.reiseTil;
+        this.endretReise = "For reise " + endretReise.id + ":         " + endretReise.reiseFra + " - " + endretReise.reiseTil;
         const endreModal = this.modalService.open(EndreModal)
         endreModal.componentInstance.endreObjekt = this.endretReise;
 
