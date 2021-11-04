@@ -51,5 +51,28 @@ namespace Kunde_SPA.Controllers
             return BadRequest("Feil i inputvalidering på server");
         }
 
+        [HttpGet]
+        public async Task<ActionResult> LoggUt()
+        {
+
+            if (ModelState.IsValid)
+            {
+                bool returnOK = await _billettDb.LoggUt();
+                if (!returnOK)
+                {
+                    _log.LogInformation("Kunne ikke logge ut");
+                    return Ok(false);
+                }
+                HttpContext.Session.SetString(_ikkeLoggetInn, _ikkeLoggetInn);
+                return Ok(true);
+            }
+            return BadRequest("Kunne ikke logge ut");
+        }
+
+
+
+
+
     }
+
 }

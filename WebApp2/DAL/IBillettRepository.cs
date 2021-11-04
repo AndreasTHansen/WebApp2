@@ -14,5 +14,7 @@ namespace Kunde_SPA.DAL
         Task<bool> EndreBillett(Billett endreBillett);
         Task<bool> Slett(int id);
         Task<bool> LoggInn(Bruker bruker);
+        Task<bool> LoggUt();
+
     }
 }

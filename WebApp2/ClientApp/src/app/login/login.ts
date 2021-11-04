@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { Inject, ViewChild, ElementRef } from '@angular/core';
+import { ViewChild, ElementRef } from '@angular/core';
 import { Bruker } from '../Bruker';
+import { MenyService } from '../meny/meny.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './login.html'
 })
-export class Login {
+export class Login implements OnInit{
   title = 'Login';
 
-  constructor(private http: HttpClient, private router: Router, private builder: FormBuilder) { }
+  constructor(public nav: MenyService, private http: HttpClient, private router: Router, private builder: FormBuilder) { }
 
   @ViewChild('loggInnScreen', { static: true }) loggInnScreen: ElementRef;
+
+  ngOnInit() {
+    this.nav.hide();
+  }
 
   loginForm: FormGroup = this.builder.group({
     username: ['', Validators.required],
@@ -41,7 +46,6 @@ export class Login {
           alert("Du logget inn");
 
           this.router.navigate(['/liste']);
-          this.loggInnScreen.nativeElement.hidden = false;
 
           console.log(this.loginForm.value.brukernavn);
           console.log(this.loginForm.value.passord);
@@ -55,9 +59,9 @@ export class Login {
       },
         error => console.log("feil" + error.message)
       );
-
-
   };
 }
+
+
 
 
