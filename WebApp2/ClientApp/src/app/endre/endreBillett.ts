@@ -27,7 +27,7 @@ export class BillettEndre {
       null, Validators.compose([Validators.required, Validators.pattern("[1-9]{1,9}")])
     ],
     totalPris: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{1,6}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{1,6}")])
     ]
     
   }

@@ -23,16 +23,16 @@ export class EndreReise {
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
     ],
     datoAnkomst: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9./\:]{2,20}$")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}")])
     ],
     tidspunktFra: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9:]{2,20}$")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[:][0-9]{2}$")])
     ],
     tidspunktTil: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9:]{2,20}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[:][0-9]{2}$")])
     ],
     datoAvreise: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}")])
     ],
     pris: [
       null, Validators.compose([Validators.required, Validators.pattern("[0-9]{2,8}")])
