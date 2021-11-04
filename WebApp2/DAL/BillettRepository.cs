@@ -154,7 +154,8 @@ namespace Kunde_SPA.DAL
                 Billetter enBillett = await _billettDb.Billetter.FindAsync(id);
                 var hentetBillett = new Billett()
                 {
-                    id = enBillett.kunde.id,
+                    id = enBillett.id,
+                    kundeId = enBillett.kunde.id,
                     fornavn = enBillett.kunde.fornavn,
                     etternavn = enBillett.kunde.etternavn,
                     epost = enBillett.kunde.epost,
@@ -196,14 +197,25 @@ namespace Kunde_SPA.DAL
                         kundeRad.etternavn = endreBillett.etternavn;
                         kundeRad.epost = endreBillett.epost;
                         kundeRad.mobilnummer = endreBillett.mobilnummer;
-                        kundeRad.kort.kortnummer = endreBillett.kortnummer;
-                        kundeRad.kort.cvc = endreBillett.cvc;
-                        kundeRad.kort.utlopsdato = endreBillett.utlopsdato;
+
+                        var sjekkKort = _billettDb.Kort.Find(endreBillett.kortnummer);
+                        if (sjekkKort == null)
+                        {
+                            var kortRad = new Kort();
+                            kortRad.kortnummer = endreBillett.kortnummer;
+                            kortRad.cvc = endreBillett.cvc;
+                            kortRad.utlopsdato = endreBillett.utlopsdato;
+
+                            endreObjekt.kunde.kort = kortRad;
+                        }
+                        else
+                        {
+                            endreObjekt.kunde.kort.kortnummer = endreBillett.kortnummer;
+                        }
 
                         //Kortet blir endret i endreKunde, skal ikke være nødvendig med å sjekke kort her
 
                         endreObjekt.kunde = kundeRad;
-
                     }
                     else
                     {

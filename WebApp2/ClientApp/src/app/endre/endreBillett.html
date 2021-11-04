@@ -2,53 +2,62 @@
     <div class="col-md-4">
       <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
         <input class="form-control" formControlName="id" type="hidden" />
+        <input class="form-control" formControlName="kundeId" type="hidden" />
+        <input class="form-control" formControlName="reiseId" type="hidden" />
+        <input class="form-control" formControlName="kortnummer" type="hidden" />
         <h2>Billett</h2>
         <div class="form-group">
-          <label>Kunde</label>
-          <input class="form-control" formControlName="fornavn" />
-          <p class="alert alert-warning" [hidden]="skjema.controls.fornavn.valid || (skjema.controls.fornavn.pristine && !submitted)">
+          <label>Antall Barn</label>
+          <input class="form-control" formControlName="antallBarn" type="number" />
+          <p class="alert alert-warning" [hidden]="skjema.controls.antallBarn.valid || (skjema.controls.antallBarn.pristine && !submitted)">
             Fornavn er obligatorisk.
           </p>
         </div>
         <div class="form-group">
-          <label>Reise</label>
-          <input class="form-control" formControlName="etternavn" />
-          <p class="alert alert-warning" [hidden]="skjema.controls.etternavn.valid || (skjema.controls.etternavn.pristine && !submitted)">
+          <label>Antall voksne</label>
+          <input class="form-control" formControlName="antallVoksne" type="number" />
+          <p class="alert alert-warning" [hidden]="skjema.controls.antallVoksne.valid || (skjema.controls.antallVoksne.pristine && !submitted)">
             Etternavn er obligatorisk.
           </p>
         </div>
         <div class="form-group">
-          <label>Antall Barn</label>
-          <input class="form-control" formControlName="mobilnummer" />
-          <p class="alert alert-warning" [hidden]="skjema.controls.mobilnummer.valid || (skjema.controls.mobilnummer.pristine && !submitted)">
-            Mobilnummer er obligatorisk
-          </p>
-        </div>
-        <div class="form-group">
-          <label>Antall voksne</label>
-          <input class="form-control" formControlName="epost" />
-          <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid || (skjema.controls.epost.pristine && !submitted)">
+          <label>Total pris</label>
+          <input class="form-control" formControlName="totalPris" type="number" />
+          <p class="alert alert-warning" [hidden]="skjema.controls.totalPris.valid || (skjema.controls.totalPris.pristine && !submitted)">
             E-post er obligatorisk
           </p>
         </div>
         <div class="form-group">
-          <label>Antall barn</label>
-          <input class="form-control" formControlName="epost" />
-          <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid || (skjema.controls.epost.pristine && !submitted)">
-            E-post er obligatorisk
-          </p>
+          <button type="submit" [disabled]="!skjema.valid" class="btn btn-primary">Endre Billett-verdiene</button>
         </div>
         <div class="form-group">
-          <label>Tol pris</label>
-          <input class="form-control" formControlName="epost" />
-          <p class="alert alert-warning" [hidden]="skjema.controls.epost.valid || (skjema.controls.epost.pristine && !submitted)">
-            E-post er obligatorisk
-          </p>
-        </div>
+          <h2>Kunde:</h2>
           <div class="form-group">
-            <button type="submit" [disabled]="!skjema.valid" class="btn btn-primary">Endre</button>
+            Id: &nbsp;&nbsp;&nbsp;&nbsp; {{billetten.kundeId}} <br /><br />
+            Navn: &nbsp;&nbsp;&nbsp;&nbsp; {{billetten.fornavn}}  {{billetten.etternavn}} <br /><br />
+            Epost: &nbsp;&nbsp;&nbsp;&nbsp; {{billetten.epost}}  <br /><br />
+            Mobilnummer: &nbsp;&nbsp;&nbsp;&nbsp; {{billetten.mobilnummer}} <br /> <br />
+          </div>
+          <div>
+            <button class="btn btn-success" [routerLink]="['/endre', billetten.kundeId]">Endre Kunde</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <h2>Reise:</h2>
+          <div class="form-group">
+            Id: &nbsp;&nbsp;&nbsp;&nbsp; {{billetten.reiseId}}<br /><br />
+            Reise: &nbsp;&nbsp;&nbsp;&nbsp; {{billetten.reiseFra}} - {{billetten.reiseTil}}<br /><br />
+            Dato avreise: &nbsp;&nbsp;&nbsp;&nbsp;{{billetten.datoAvreise}}<br /><br />
+            Dato ankomst: &nbsp;&nbsp;&nbsp;&nbsp;{{billetten.datoAnkomst}}<br /><br />
+            Tidspunkt avreise: &nbsp;&nbsp;&nbsp;&nbsp;{{billetten.tidspunktFra}}<br /><br />
+            Tidspunkt ankomst: &nbsp;&nbsp;&nbsp;&nbsp;{{billetten.tidpunktTil}}<br /><br />
+            Pris: &nbsp;&nbsp;&nbsp;&nbsp;{{billetten.reisePris}}<br /><br />
+          </div>
+          <div>
+            <button class="btn btn-success" [routerLink]="['/endreReise', billetten.reiseId]">Endre Reise</button>
             <button class="btn btn-default" routerLink="/billettListe">Tilbake</button>
           </div>
+        </div>
       </form>
     </div>
 </div>

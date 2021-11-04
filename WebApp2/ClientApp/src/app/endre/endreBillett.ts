@@ -14,18 +14,19 @@ export class BillettEndre {
 
   validering = {
     id: [""],
-    fornavn: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ -]{2,30}")])
+    kortnummer: [""],
+    kundeId: [""],
+    reiseId: [""],
+    antallBarn: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{0,9}")])
     ],
-    etternavn: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
+    antallVoksne: [
+      null, Validators.compose([Validators.required, Validators.pattern("[1-9]{1,9}")])
     ],
-    mobilnummer: [
-      null, Validators.compose([Validators.required, Validators.pattern("[0-9\.\ \-]{8,12}")])
-    ],
-    epost: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
+    totalPris: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{1,6}")])
     ]
+    
   }
 
   constructor(private http: HttpClient, private fb: FormBuilder,
@@ -47,12 +48,14 @@ export class BillettEndre {
     this.http.get<Billett>("api/billett/" + id)
       .subscribe(
         billett => {
-          this.skjema.patchValue({ id: billett.id });
-          this.skjema.patchValue({ fornavn: billett.fornavn });
-          this.skjema.patchValue({ etternavn: billett.etternavn });
-          this.skjema.patchValue({ epost: billett.epost });
-          this.skjema.patchValue({ mobilnummer: billett.mobilnummer });
           this.billetten = billett;
+          this.skjema.patchValue({ id: billett.id });
+          this.skjema.patchValue({ kundeId: billett.kundeId });
+          this.skjema.patchValue({ kortnummer: billett.kortnummer });
+          this.skjema.patchValue({ reiseId: billett.reiseId });
+          this.skjema.patchValue({ antallBarn: billett.antallBarn });
+          this.skjema.patchValue({ antallVoksne: billett.antallVoksne });
+          this.skjema.patchValue({ totalPris: billett.totalPris });
         },
         error => console.log(error)
       );
@@ -61,8 +64,13 @@ export class BillettEndre {
   endreBillett() {
     const endretBillett = new Billett();
     endretBillett.id = this.skjema.value.id;
-    endretBillett.fornavn = this.skjema.value.fornavn;
-    endretBillett.etternavn = this.skjema.value.etternavn;
+    endretBillett.kundeId = this.skjema.value.kundeId;
+    endretBillett.kortnummer = this.skjema.value.kortnummer;
+    endretBillett.reiseId = this.skjema.value.reiseId;
+    endretBillett.antallBarn = this.skjema.value.antallBarn;
+    endretBillett.antallVoksne = this.skjema.value.antallVoksne;
+    endretBillett.totalPris = this.skjema.value.totalPris; 
+
 
     this.http.put("api/billett/", endretBillett)
       .subscribe(
