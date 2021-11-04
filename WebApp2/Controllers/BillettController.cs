@@ -58,6 +58,7 @@ namespace Kunde_SPA.Controllers
                     _log.LogInformation("Billetten kunne ikke lagres!");
                     return BadRequest();
                 }
+                _log.LogInformation("Billett ble lagret");
                 return Ok();
             }
             _log.LogInformation("Feil i inputvalidering");
@@ -77,6 +78,7 @@ namespace Kunde_SPA.Controllers
                 _log.LogInformation("Billetten ble ikke slettet");
                 return NotFound();
             }
+            _log.LogInformation("Billetten ble slettet");
             return Ok();
         }
         [HttpPut]
@@ -95,6 +97,7 @@ namespace Kunde_SPA.Controllers
                     _log.LogInformation("Billetten kunne ikke bli endret");
                     return NotFound();
                 }
+                _log.LogInformation("Billetten har blitt endret");
                 return Ok();
             }
             _log.LogInformation("Feil i inputvalidering");
