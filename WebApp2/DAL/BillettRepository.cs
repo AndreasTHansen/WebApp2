@@ -278,12 +278,17 @@ namespace Kunde_SPA.DAL
             return salt;
         }
 
-
         public async Task<bool> LoggInn(Bruker bruker)
         {
             try
             {
                 Brukere funnetBruker = await _billettDb.Brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
+
+                //Brukernavn feil
+                if(funnetBruker == null)
+                {
+                    return false;
+                }
 
                 //sjekk passordet
                 byte[] hash = LagHash(bruker.Passord, funnetBruker.Salt);

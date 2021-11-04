@@ -37,6 +37,7 @@ export class AppComponent {
       .subscribe(retur => {
         //DETTE HER
         if (retur) {
+          alert(retur);
           alert("Du logget inn");
 
           this.router.navigate(['/liste']);
@@ -46,13 +47,13 @@ export class AppComponent {
           console.log(this.loginForm.value.passord);
         }
         else {
-          alert("HEHEHHE NOT TODAY BITCH");
+          alert("Kom ikke inn");
 
           error => console.log(error)
 
         }
       },
-        error => console.log(error)
+        error => console.log("feil"+error.message)
       );
 
 
