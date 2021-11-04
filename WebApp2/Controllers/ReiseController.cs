@@ -37,6 +37,7 @@ namespace Kunde_SPA.Controllers
             List<Reise> reiseListe = await _billettDb.HentAlleReiser();
             return Ok(reiseListe);
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult> HentEnReise(int id)
         {
@@ -68,6 +69,7 @@ namespace Kunde_SPA.Controllers
                 _log.LogInformation("Reisen kunne ikke lagres!");
                 return BadRequest();
             }
+            _log.LogInformation("Reise har blitt lagret"); 
             return Ok();
         }
 
@@ -87,6 +89,7 @@ namespace Kunde_SPA.Controllers
                     _log.LogInformation("Reisen kunne ikke bli endret");
                     return NotFound();
                 }
+                _log.LogInformation("Reisen har blitt endret");
                 return Ok();
             }
             _log.LogInformation("Feil i inputvalidering");
@@ -106,6 +109,7 @@ namespace Kunde_SPA.Controllers
                 _log.LogInformation("Reisen ble ikke slettet");
                 return NotFound();
             }
+            _log.LogInformation("Reisen har blitt slettet");
             return Ok();
         }
     }

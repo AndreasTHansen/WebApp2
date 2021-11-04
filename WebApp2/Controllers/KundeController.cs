@@ -75,6 +75,7 @@ namespace KundeApp2.Controllers
                     _log.LogInformation("Det skjedde noe feil under endringen");
                     return NotFound();
                 }
+                _log.LogInformation("Kunde har blitt endret");
                 return Ok();
             }
             _log.LogInformation("Feil i inputvalidering");
@@ -89,6 +90,7 @@ namespace KundeApp2.Controllers
                 _log.LogInformation("Det skjedde noe feil under lagringen");
                 return BadRequest();
             }
+            _log.LogInformation("Kunde har blitt lagret");
             return Ok();
         }
         [HttpDelete("{id}")]
@@ -100,6 +102,7 @@ namespace KundeApp2.Controllers
                 _log.LogInformation("Kunden ble ikke slettet");
                 return NotFound();
             }
+            _log.LogInformation("Kunde har blitt slettet");
             return Ok();
         }
     }
