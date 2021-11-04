@@ -31,7 +31,7 @@ namespace Kunde_SPA.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             List<Reise> reiseListe = await _billettDb.HentAlleReiser();
@@ -43,7 +43,7 @@ namespace Kunde_SPA.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             Reise hentetReise = await _billettDb.HentEnReise(id);
@@ -51,7 +51,7 @@ namespace Kunde_SPA.Controllers
             if (hentetReise == null)
             {
                 _log.LogInformation("Fant ikke reisen i databasen");
-                return NotFound();
+                return NotFound(false);
             }
             return Ok(hentetReise);
         }
@@ -60,17 +60,17 @@ namespace Kunde_SPA.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             bool lagreOk = await _billettDb.LagreReise(innReise);
             if (!lagreOk)
             {
                 _log.LogInformation("Reisen kunne ikke lagres!");
-                return BadRequest();
+                return BadRequest(false);
             }
             _log.LogInformation("Reise har blitt lagret"); 
-            return Ok();
+            return Ok(true);
         }
 
         [HttpPut]
@@ -78,7 +78,7 @@ namespace Kunde_SPA.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             if (ModelState.IsValid)
@@ -87,30 +87,30 @@ namespace Kunde_SPA.Controllers
                 if (!endreOk)
                 {
                     _log.LogInformation("Reisen kunne ikke bli endret");
-                    return NotFound();
+                    return NotFound(false);
                 }
                 _log.LogInformation("Reisen har blitt endret");
-                return Ok();
+                return Ok(true);
             }
             _log.LogInformation("Feil i inputvalidering");
-            return BadRequest();
+            return BadRequest(false);
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult> SlettReise(int id)
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             bool returOK = await _billettDb.SlettReise(id);
             if (!returOK)
             {
                 _log.LogInformation("Reisen ble ikke slettet");
-                return NotFound();
+                return NotFound(false);
             }
             _log.LogInformation("Reisen har blitt slettet");
-            return Ok();
+            return Ok(true);
         }
     }
 }

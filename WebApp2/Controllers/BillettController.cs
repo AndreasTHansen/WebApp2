@@ -43,7 +43,7 @@ namespace Kunde_SPA.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             if (ModelState.IsValid)
@@ -82,7 +82,7 @@ namespace Kunde_SPA.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             if (ModelState.IsValid)

@@ -42,13 +42,13 @@ namespace Kunde_SPA.Controllers
                 {
                     _log.LogInformation("Feil brukernavn eller passord");
                     HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
-                    return Ok(false);
+                    return BadRequest(false);
                 }
                 HttpContext.Session.SetString(_loggetInn, _loggetInn);
                 return Ok(true);
             }
             _log.LogInformation("Feil i inputvalidering");
-            return BadRequest("Feil i inputvalidering på server");
+            return BadRequest(false);
         }
 
         [HttpGet]
@@ -61,7 +61,7 @@ namespace Kunde_SPA.Controllers
                 if (!returnOK)
                 {
                     _log.LogInformation("Kunne ikke logge ut");
-                    return Ok(false);
+                    return BadRequest(false);
                 }
                 HttpContext.Session.SetString(_ikkeLoggetInn, _ikkeLoggetInn);
                 return Ok(true);

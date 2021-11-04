@@ -60,7 +60,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("",resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Billetten kunne ikke lagres", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Feil i inputvalidering på server", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -393,7 +393,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("Kunden ble endret", resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
         [Fact]
@@ -412,7 +412,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
-            Assert.Equal("", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -434,7 +434,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Feil i inputvalidering på server", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -454,7 +454,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
-            Assert.Equal("", resultat.Value);
+            Assert.Equal("Ikke logget inn", resultat.Value);
         }
 
 
@@ -638,7 +638,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("Reisen ble endret", resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
         [Fact]
@@ -657,7 +657,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
-            Assert.Equal("Reisen ble ikke endret", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -679,7 +679,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Feil i inputvalidering på server", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -720,7 +720,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("", resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
         [Fact]
@@ -742,7 +742,7 @@ namespace WebAppTest
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Feil i inputvalidering på server", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -761,7 +761,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Feil brukernavn eller passord", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
 
         [Fact]
@@ -778,7 +778,7 @@ namespace WebAppTest
             var resultat = await brukerController.LoggUt() as OkObjectResult;
 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal("", resultat.Value);
+            Assert.Equal(true, resultat.Value);
         }
 
         [Fact]
@@ -797,7 +797,7 @@ namespace WebAppTest
 
             //Assert
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
-            Assert.Equal("Kunne ikke logge ut", resultat.Value);
+            Assert.Equal(false, resultat.Value);
         }
     }
 }
