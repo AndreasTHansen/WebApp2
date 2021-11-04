@@ -706,6 +706,44 @@ namespace WebAppTest
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
             Assert.Equal<Kunde>((Kunde)resultat.Value, kunde);
         }
+        [Fact]
+        public async Task HentEnKundeLoggetInnFeilOK()
+        {
+            //Arrange
+            mockRepK.Setup(k => k.HentEnKunde(It.IsAny<int>())).ReturnsAsync(() => null);
+
+            var kundeController = new KundeController(mockRepK.Object, mockLogK.Object);
+
+            mockSession[_loggetInn] = _loggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            //Act
+            var resultat = await kundeController.HentEnKunde(It.IsAny<int>()) as NotFoundObjectResult;
+
+            //Assert
+            Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
+            Assert.Equal(false, resultat.Value);
+        }
+        [Fact]
+        public async Task HentEnKundeIkkeLoggetInnOK()
+        {
+            //Arrange
+            mockRepK.Setup(k => k.HentEnKunde(It.IsAny<int>())).ReturnsAsync(It.IsAny<Kunde>);
+
+            var kundeController = new KundeController(mockRepK.Object, mockLogK.Object);
+
+            mockSession[_loggetInn] = _ikkeLoggetInn;
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            //Act
+            var resultat = await kundeController.HentEnKunde(It.IsAny<int>()) as UnauthorizedObjectResult;
+
+            //Assert
+            Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
+            Assert.Equal("Ikke logget inn", resultat.Value);
+        }
 
         //Reise controller
 
