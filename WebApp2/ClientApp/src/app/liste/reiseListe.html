@@ -9,6 +9,8 @@
             <th>Reise</th>
             <th>Dato avreise</th>
             <th>Dato ankomst</th>
+            <th>Tidspunkt avreise</th>
+            <th>Tidspunkt ankomst</th>
             <th>Pris</th>
             <th></th>
             <th></th>
@@ -19,6 +21,8 @@
             <td>{{reise.reiseFra}} - {{reise.reiseTil}}</td>
             <td>{{reise.datoAvreise}}</td>
             <td>{{reise.datoAnkomst}}</td>
+            <td>{{reise.tidspunktFra}}</td>
+            <td>{{reise.tidspunktTil}}</td>
             <td>{{reise.reisePris}}</td>
             <td><button class="btn btn-danger" (click)="sletteReise(reise.id)">Slett</button></td>
             <td><button class="btn btn-success" [routerLink]="['/endreReise',reise.id]">Endre</button></td>

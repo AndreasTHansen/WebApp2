@@ -37,6 +37,7 @@ namespace Kunde_SPA.Controllers
             List<Reise> reiseListe = await _billettDb.HentAlleReiser();
             return Ok(reiseListe);
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult> HentEnReise(int id)
         {
