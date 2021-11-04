@@ -14,9 +14,9 @@ export class Billett {
   reiseId: number;
   reiseTil: string;
   reiseFra: string;
-  tidspunktAvgang: string;
-  tidspunktAnkomst: string;
-  datoAvgang: string;
+  tidspunktFra: string;
+  tidspunktTil: string;
+  datoAvreise: string;
   datoAnkomst: string;
   reisePris: number;
 }

@@ -50,7 +50,9 @@ export class BillettLagre {
   };
 
   validering = {
-    id: [""],
+    fornavn: [
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,30}")])
+    ],
     etternavn: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
     ],
@@ -59,6 +61,43 @@ export class BillettLagre {
     ],
     epost: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])
+    ],
+    kortnummer: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{16}")])
+    ],
+    utlopsdato: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
+    ],
+    cvc: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{3}")])
+    ],
+    datoAvreise: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
+    ],
+    datoAnkomst: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9/]{10}")])
+    ],
+ 
+    tidspunktFra: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9:/]{4,6}")])
+    ],
+    tidspunktTil: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9:/]{4,6}")])
+    ],
+    reiseFra: [
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
+    ],
+    reiseTil: [
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZøæåØÆÅ -]{2,50}")])
+    ],
+    reisePris: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9.]{1,6}")])
+    ],
+    antallBarn: [
+      null, Validators.compose([Validators.required, Validators.pattern("[0-9]{0,1}")])
+    ],
+    antallVoksne: [
+      null, Validators.compose([Validators.required, Validators.pattern("[1-9]{1}")])
     ]
   }
 
@@ -68,7 +107,7 @@ export class BillettLagre {
   }
 
   vedSubmit() {
-    this.lagreKunde();
+    this.lagreBillett();
   }
 
   visKundeListe() {
@@ -85,18 +124,30 @@ export class BillettLagre {
 
   }
 
-  lagreKunde() {
+  lagreBillett() {
     const lagretBillett = new Billett();
 
-    lagretBillett.fornavn = this.valgtKunde.fornavn;
-    lagretBillett.kundeId = this.valgtKunde.id;
+    lagretBillett.fornavn = this.skjema.value.fornavn;
     lagretBillett.etternavn = this.skjema.value.etternavn;
     lagretBillett.mobilnummer = this.skjema.value.mobilnummer;
     lagretBillett.epost = this.skjema.value.epost;
+    lagretBillett.kortnummer = this.skjema.value.kortnummer;
+    lagretBillett.utlopsdato = this.skjema.value.utlopsdato;
+    lagretBillett.cvc = this.skjema.value.cvc;
+    lagretBillett.reiseFra = this.skjema.value.reiseFra;
+    lagretBillett.reiseTil = this.skjema.value.reiseTil;
+    lagretBillett.datoAvreise = this.skjema.value.datoAvreise;
+    lagretBillett.datoAnkomst = this.skjema.value.datoAnkomst;
+    lagretBillett.tidspunktFra = this.skjema.value.tidspunktFra;
+    lagretBillett.tidspunktTil = this.skjema.value.tidspunktTil;
+    lagretBillett.reisePris = this.skjema.value.reisePris;
+    lagretBillett.antallBarn = this.skjema.value.antallBarn;
+    lagretBillett.antallVoksne = this.skjema.value.antallVoksne;
+    lagretBillett.totalPris = (lagretBillett.reisePris * lagretBillett.antallVoksne) + (lagretBillett.reisePris * lagretBillett.antallBarn * 0.5);
 
     this.http.post("api/billett", lagretBillett)
       .subscribe(retur => {
-        this.router.navigate(['/liste']);
+        this.router.navigate(['/billettListe']);
       },
         error => console.log(error)
       );

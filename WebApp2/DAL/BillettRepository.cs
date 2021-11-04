@@ -105,13 +105,12 @@ namespace Kunde_SPA.DAL
                 {
 
                     var nyReise = new Reiser();
-                    nyReise.id = innBillett.reiseId;
                     nyReise.reiseFra = innBillett.reiseFra;
                     nyReise.reiseTil = innBillett.reiseTil;
                     nyReise.datoAvreise = innBillett.datoAvreise;
                     nyReise.datoAnkomst = innBillett.datoAnkomst;
-                    nyReise.tidspunktFra = innBillett.reiseTil;
-                    nyReise.tidspunktTil = innBillett.reiseTil;
+                    nyReise.tidspunktFra = innBillett.tidspunktFra;
+                    nyReise.tidspunktTil = innBillett.tidspunktTil;
                     nyReise.reisePris = innBillett.reisePris;
 
                     nyBillett.reise = nyReise;
