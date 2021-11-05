@@ -17,7 +17,7 @@ export class Meny {
     this.http.get("api/bruker")
       .subscribe(retur => {
         if (retur) {
-          alert(retur);
+          alert("Logget ut");
         }
         else {
           alert("Fikk ikke logget ut")
