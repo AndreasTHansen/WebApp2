@@ -32,22 +32,18 @@ namespace Kunde_SPA.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             List<Billett> alleBilletter = await _billettDb.HentAlle();
-            if (alleBilletter == null)
-            {
-               return NotFound();
-            }
-               return Ok(alleBilletter);
+            return Ok(alleBilletter);
         }
         [HttpPost]
         public async Task<ActionResult> Lagre(Billett innBillett)
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             if (ModelState.IsValid)
@@ -56,37 +52,37 @@ namespace Kunde_SPA.Controllers
                 if (!returOK)
                 {
                     _log.LogInformation("Billetten kunne ikke lagres!");
-                    return BadRequest();
+                    return BadRequest(false);
                 }
                 _log.LogInformation("Billett ble lagret");
-                return Ok();
+                return Ok(true);
             }
             _log.LogInformation("Feil i inputvalidering");
-            return BadRequest();
+            return BadRequest(false);
         }
         [HttpDelete("{id}")]
         public async Task<ActionResult> Slett(int id)
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             bool returOK = await _billettDb.Slett(id);
             if (!returOK)
             {
                 _log.LogInformation("Billetten ble ikke slettet");
-                return NotFound();
+                return NotFound(false);
             }
             _log.LogInformation("Billetten ble slettet");
-            return Ok();
+            return Ok(true);
         }
         [HttpPut]
         public async Task<ActionResult> EndreBillett(Billett endreBillett)
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             if (ModelState.IsValid)
@@ -95,20 +91,20 @@ namespace Kunde_SPA.Controllers
                 if (!endreOk)
                 {
                     _log.LogInformation("Billetten kunne ikke bli endret");
-                    return NotFound();
+                    return NotFound(false);
                 }
                 _log.LogInformation("Billetten har blitt endret");
-                return Ok();
+                return Ok(true);
             }
             _log.LogInformation("Feil i inputvalidering");
-            return BadRequest();
+            return BadRequest(false);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult> HentEnBillett(int id)
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             Billett hentetBillett = await _billettDb.HentEnBillett(id);
@@ -116,7 +112,7 @@ namespace Kunde_SPA.Controllers
             if(hentetBillett == null)
             {
                 _log.LogInformation("Fant ikke billetten i databasen");
-                return NotFound();
+                return NotFound(false);
             }
             return Ok(hentetBillett);
         }

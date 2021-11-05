@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { Lagre } from './lagre/lagre';
-import { Liste } from './liste/liste';
-import { Endre } from './endre/endre';
+import { LagreKunde } from './lagre/lagreKunde';
+import { ListeKunde } from './liste/listeKunde';
+import { EndreKunde } from './endre/endreKunde';
 import { Meny } from './meny/meny';
 import { BillettListe } from './liste/billettListe';
 import { BillettEndre } from './endre/endreBillett';
@@ -27,9 +27,9 @@ import { MenyService } from './meny/meny.service';
     AppComponent,
     Meny,
 
-    Lagre,  
-    Liste,
-    Endre,
+    LagreKunde,  
+    ListeKunde,
+    EndreKunde,
     Login,
 
     BillettListe,
