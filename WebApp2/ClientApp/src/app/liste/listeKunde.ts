@@ -9,9 +9,9 @@ import { SletteModal } from "../modals/sletteModal";
 import { MenyService } from '../meny/meny.service';
 
 @Component({
-  templateUrl: "liste.html"
+  templateUrl: "listeKunde.html"
 })
-export class Liste implements OnInit{
+export class ListeKunde implements OnInit{
   alleKunder: Array<Kunde>;
   laster: boolean;
   kundeTilSletting: string;
@@ -62,7 +62,7 @@ export class Liste implements OnInit{
             error => alert("Denne reisen kan ikke slettes fordi den finnes i en billett")
           );
       }
-      this.router.navigate(['/liste']);
+      this.router.navigate(['/listeKunde']);
     });
   }
 }

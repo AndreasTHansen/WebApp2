@@ -8,9 +8,9 @@ import { EndreModal } from "../modals/endreModal";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  templateUrl: "endre.html"
+  templateUrl: "endreKunde.html"
 })
-export class Endre {
+export class EndreKunde {
   skjema: FormGroup;
   endretKunde: string;
   
@@ -75,9 +75,9 @@ export class Endre {
       .subscribe(
         retur => {
           this.endretKunde = "For kunde: " + endretKunde.fornavn + "  " + endretKunde.etternavn;
-          const endreModal = this.modalService.open(EndreModal)
+          const endreModal = this.modalService.open(EndreModal);
           endreModal.componentInstance.endreObjekt = this.endretKunde;
-          this.router.navigate(['/liste']);
+          this.router.navigate(['/listeKunde']);
         },
         error => console.log(error)
       );

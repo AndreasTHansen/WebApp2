@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Lagre } from './lagre/lagre';
-import { Liste } from './liste/liste';
-import { Endre } from './endre/endre';
+import { LagreKunde } from './lagre/lagreKunde';
+import { ListeKunde } from './liste/listeKunde';
+import { EndreKunde } from './endre/endreKunde';
 import { BillettListe } from './liste/billettListe';
 import { BillettEndre } from './endre/endreBillett';
 import { ReiseListe } from "./liste/reiseListe";
@@ -11,9 +11,9 @@ import { EndreReise } from './endre/endreReise';
 import { Login } from './login/login';
 
 const appRoots: Routes = [
-  { path: 'lagre', component: Lagre },
-  { path: 'liste', component: Liste },
-  { path: 'endre/:id', component: Endre },
+  { path: 'lagreKunde', component: LagreKunde },
+  { path: 'listeKunde', component: ListeKunde },
+  { path: 'endreKunde/:id', component: EndreKunde },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'billettListe', component: BillettListe },
   { path: 'endreBillett/:id', component: BillettEndre },

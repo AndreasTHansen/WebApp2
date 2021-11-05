@@ -21,11 +21,11 @@
                         <td>{{kunde.mobilnummer}}</td>
                         <td>{{kunde.epost}}</td>
                         <td><button class="btn btn-danger" (click)="sletteKunde(kunde.id)">Slett</button></td>
-                        <td><button class="btn btn-success" [routerLink]="['/endre',kunde.id]">Endre</button></td>
+                        <td><button class="btn btn-success" [routerLink]="['/endreKunde',kunde.id]">Endre</button></td>
                     </tr>
                 </tbody>
             </table>
-            <button class='btn btn-primary' routerLink="/lagre">Legg til kunde</button>
+            <button class='btn btn-primary' routerLink="/lagreKunde">Legg til kunde</button>
         </div>
     </div>
 </div>

@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { Kunde } from "../Kunde";
 
 @Component({
-  templateUrl: "lagre.html"
+  templateUrl: "lagreKunde.html"
 })
-export class Lagre {
+export class LagreKunde {
   skjema: FormGroup;
   
   validering = {
@@ -56,7 +56,7 @@ export class Lagre {
 
     this.http.post("api/kunde", lagretKunde)
       .subscribe(retur => {
-        this.router.navigate(['/liste']);
+        this.router.navigate(['/listeKunde']);
       },
        error => console.log(error)
       );
