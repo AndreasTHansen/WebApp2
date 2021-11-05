@@ -1297,10 +1297,10 @@ namespace WebAppTest
             brukerController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             //Act
-            var resultat = await brukerController.LoggInn(It.IsAny<Bruker>()) as BadRequestObjectResult;
+            var resultat = await brukerController.LoggInn(It.IsAny<Bruker>()) as OkObjectResult;
 
             //Assert
-            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
             Assert.Equal(false, resultat.Value);
         }
 

@@ -42,7 +42,7 @@ namespace Kunde_SPA.Controllers
                 {
                     _log.LogInformation("Feil brukernavn eller passord");
                     HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
-                    return BadRequest(false);
+                    return Ok(false);
                 }
                 HttpContext.Session.SetString(_loggetInn, _loggetInn);
                 return Ok(true);

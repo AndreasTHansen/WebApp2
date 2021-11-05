@@ -43,9 +43,6 @@ export class Login implements OnInit{
           alert("Du logget inn");
 
           this.router.navigate(['/listeKunde']);
-
-          console.log(this.loginForm.value.brukernavn);
-          console.log(this.loginForm.value.passord);
         }
         else {
           alert("Kom ikke inn");
