@@ -36,13 +36,10 @@ export class Login implements OnInit{
     bruker.brukernavn = this.loginForm.value.username;
     bruker.passord = this.loginForm.value.password;
 
-    alert("Logger inn med " + bruker.brukernavn + " " + bruker.passord);
-
     this.http.post("api/bruker", bruker)
       .subscribe(retur => {
         //DETTE HER
         if (retur) {
-          alert(retur);
           alert("Du logget inn");
 
           this.router.navigate(['/liste']);
