@@ -63,7 +63,7 @@ namespace Kunde_SPA.Controllers
                     _log.LogInformation("Kunne ikke logge ut");
                     return BadRequest(false);
                 }
-                HttpContext.Session.SetString(_ikkeLoggetInn, _ikkeLoggetInn);
+                HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
                 return Ok(true);
             }
             return BadRequest("Kunne ikke logge ut");
